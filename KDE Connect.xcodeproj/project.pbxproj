@@ -1,0 +1,581 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		5E04DB51282CD63200969009 /* KDE_ConnectApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E04DB50282CD63200969009 /* KDE_ConnectApp.swift */; };
+		5E04DB53282CD63200969009 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E04DB52282CD63200969009 /* ContentView.swift */; };
+		5E04DB55282CD63200969009 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5E04DB54282CD63200969009 /* Assets.xcassets */; };
+		5E04DB58282CD63200969009 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5E04DB57282CD63200969009 /* Preview Assets.xcassets */; };
+		5E04DB63282CD63200969009 /* KDE_ConnectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E04DB62282CD63200969009 /* KDE_ConnectTests.swift */; };
+		5E04DB6D282CD63300969009 /* KDE_ConnectUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E04DB6C282CD63300969009 /* KDE_ConnectUITests.swift */; };
+		5E04DB6F282CD63300969009 /* KDE_ConnectUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E04DB6E282CD63300969009 /* KDE_ConnectUITestsLaunchTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		5E04DB5F282CD63200969009 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5E04DB45282CD63200969009 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5E04DB4C282CD63200969009;
+			remoteInfo = "KDE Connect";
+		};
+		5E04DB69282CD63300969009 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5E04DB45282CD63200969009 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5E04DB4C282CD63200969009;
+			remoteInfo = "KDE Connect";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		5E04DB4D282CD63200969009 /* KDE Connect.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "KDE Connect.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5E04DB50282CD63200969009 /* KDE_ConnectApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KDE_ConnectApp.swift; sourceTree = "<group>"; };
+		5E04DB52282CD63200969009 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		5E04DB54282CD63200969009 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		5E04DB57282CD63200969009 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		5E04DB59282CD63200969009 /* KDE_Connect.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = KDE_Connect.entitlements; sourceTree = "<group>"; };
+		5E04DB5E282CD63200969009 /* KDE ConnectTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "KDE ConnectTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5E04DB62282CD63200969009 /* KDE_ConnectTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KDE_ConnectTests.swift; sourceTree = "<group>"; };
+		5E04DB68282CD63200969009 /* KDE ConnectUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "KDE ConnectUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5E04DB6C282CD63300969009 /* KDE_ConnectUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KDE_ConnectUITests.swift; sourceTree = "<group>"; };
+		5E04DB6E282CD63300969009 /* KDE_ConnectUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KDE_ConnectUITestsLaunchTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		5E04DB4A282CD63200969009 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5E04DB5B282CD63200969009 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5E04DB65282CD63200969009 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		5E04DB44282CD63200969009 = {
+			isa = PBXGroup;
+			children = (
+				5E04DB4F282CD63200969009 /* KDE Connect */,
+				5E04DB61282CD63200969009 /* KDE ConnectTests */,
+				5E04DB6B282CD63300969009 /* KDE ConnectUITests */,
+				5E04DB4E282CD63200969009 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		5E04DB4E282CD63200969009 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5E04DB4D282CD63200969009 /* KDE Connect.app */,
+				5E04DB5E282CD63200969009 /* KDE ConnectTests.xctest */,
+				5E04DB68282CD63200969009 /* KDE ConnectUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		5E04DB4F282CD63200969009 /* KDE Connect */ = {
+			isa = PBXGroup;
+			children = (
+				5E04DB50282CD63200969009 /* KDE_ConnectApp.swift */,
+				5E04DB52282CD63200969009 /* ContentView.swift */,
+				5E04DB54282CD63200969009 /* Assets.xcassets */,
+				5E04DB59282CD63200969009 /* KDE_Connect.entitlements */,
+				5E04DB56282CD63200969009 /* Preview Content */,
+			);
+			path = "KDE Connect";
+			sourceTree = "<group>";
+		};
+		5E04DB56282CD63200969009 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				5E04DB57282CD63200969009 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		5E04DB61282CD63200969009 /* KDE ConnectTests */ = {
+			isa = PBXGroup;
+			children = (
+				5E04DB62282CD63200969009 /* KDE_ConnectTests.swift */,
+			);
+			path = "KDE ConnectTests";
+			sourceTree = "<group>";
+		};
+		5E04DB6B282CD63300969009 /* KDE ConnectUITests */ = {
+			isa = PBXGroup;
+			children = (
+				5E04DB6C282CD63300969009 /* KDE_ConnectUITests.swift */,
+				5E04DB6E282CD63300969009 /* KDE_ConnectUITestsLaunchTests.swift */,
+			);
+			path = "KDE ConnectUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		5E04DB4C282CD63200969009 /* KDE Connect */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5E04DB72282CD63300969009 /* Build configuration list for PBXNativeTarget "KDE Connect" */;
+			buildPhases = (
+				5E04DB49282CD63200969009 /* Sources */,
+				5E04DB4A282CD63200969009 /* Frameworks */,
+				5E04DB4B282CD63200969009 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "KDE Connect";
+			productName = "KDE Connect";
+			productReference = 5E04DB4D282CD63200969009 /* KDE Connect.app */;
+			productType = "com.apple.product-type.application";
+		};
+		5E04DB5D282CD63200969009 /* KDE ConnectTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5E04DB75282CD63300969009 /* Build configuration list for PBXNativeTarget "KDE ConnectTests" */;
+			buildPhases = (
+				5E04DB5A282CD63200969009 /* Sources */,
+				5E04DB5B282CD63200969009 /* Frameworks */,
+				5E04DB5C282CD63200969009 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5E04DB60282CD63200969009 /* PBXTargetDependency */,
+			);
+			name = "KDE ConnectTests";
+			productName = "KDE ConnectTests";
+			productReference = 5E04DB5E282CD63200969009 /* KDE ConnectTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		5E04DB67282CD63200969009 /* KDE ConnectUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5E04DB78282CD63300969009 /* Build configuration list for PBXNativeTarget "KDE ConnectUITests" */;
+			buildPhases = (
+				5E04DB64282CD63200969009 /* Sources */,
+				5E04DB65282CD63200969009 /* Frameworks */,
+				5E04DB66282CD63200969009 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5E04DB6A282CD63300969009 /* PBXTargetDependency */,
+			);
+			name = "KDE ConnectUITests";
+			productName = "KDE ConnectUITests";
+			productReference = 5E04DB68282CD63200969009 /* KDE ConnectUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		5E04DB45282CD63200969009 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1330;
+				LastUpgradeCheck = 1330;
+				TargetAttributes = {
+					5E04DB4C282CD63200969009 = {
+						CreatedOnToolsVersion = 13.3.1;
+					};
+					5E04DB5D282CD63200969009 = {
+						CreatedOnToolsVersion = 13.3.1;
+						TestTargetID = 5E04DB4C282CD63200969009;
+					};
+					5E04DB67282CD63200969009 = {
+						CreatedOnToolsVersion = 13.3.1;
+						TestTargetID = 5E04DB4C282CD63200969009;
+					};
+				};
+			};
+			buildConfigurationList = 5E04DB48282CD63200969009 /* Build configuration list for PBXProject "KDE Connect" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 5E04DB44282CD63200969009;
+			productRefGroup = 5E04DB4E282CD63200969009 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				5E04DB4C282CD63200969009 /* KDE Connect */,
+				5E04DB5D282CD63200969009 /* KDE ConnectTests */,
+				5E04DB67282CD63200969009 /* KDE ConnectUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		5E04DB4B282CD63200969009 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5E04DB58282CD63200969009 /* Preview Assets.xcassets in Resources */,
+				5E04DB55282CD63200969009 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5E04DB5C282CD63200969009 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5E04DB66282CD63200969009 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		5E04DB49282CD63200969009 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5E04DB53282CD63200969009 /* ContentView.swift in Sources */,
+				5E04DB51282CD63200969009 /* KDE_ConnectApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5E04DB5A282CD63200969009 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5E04DB63282CD63200969009 /* KDE_ConnectTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5E04DB64282CD63200969009 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5E04DB6F282CD63300969009 /* KDE_ConnectUITestsLaunchTests.swift in Sources */,
+				5E04DB6D282CD63300969009 /* KDE_ConnectUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		5E04DB60282CD63200969009 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5E04DB4C282CD63200969009 /* KDE Connect */;
+			targetProxy = 5E04DB5F282CD63200969009 /* PBXContainerItemProxy */;
+		};
+		5E04DB6A282CD63300969009 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5E04DB4C282CD63200969009 /* KDE Connect */;
+			targetProxy = 5E04DB69282CD63300969009 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		5E04DB70282CD63300969009 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 12.3;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		5E04DB71282CD63300969009 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 12.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		5E04DB73282CD63300969009 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "KDE Connect/KDE_Connect.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"KDE Connect/Preview Content\"";
+				DEVELOPMENT_TEAM = 3ZWV7C62H6;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.kde.turx.kdeconnect-mac.KDE-Connect";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		5E04DB74282CD63300969009 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "KDE Connect/KDE_Connect.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"KDE Connect/Preview Content\"";
+				DEVELOPMENT_TEAM = 3ZWV7C62H6;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.kde.turx.kdeconnect-mac.KDE-Connect";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		5E04DB76282CD63300969009 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3ZWV7C62H6;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 12.3;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.kde.turx.kdeconnect-mac.KDE-ConnectTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/KDE Connect.app/Contents/MacOS/KDE Connect";
+			};
+			name = Debug;
+		};
+		5E04DB77282CD63300969009 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3ZWV7C62H6;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 12.3;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.kde.turx.kdeconnect-mac.KDE-ConnectTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/KDE Connect.app/Contents/MacOS/KDE Connect";
+			};
+			name = Release;
+		};
+		5E04DB79282CD63300969009 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3ZWV7C62H6;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.kde.turx.kdeconnect-mac.KDE-ConnectUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = "KDE Connect";
+			};
+			name = Debug;
+		};
+		5E04DB7A282CD63300969009 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3ZWV7C62H6;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.kde.turx.kdeconnect-mac.KDE-ConnectUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = "KDE Connect";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		5E04DB48282CD63200969009 /* Build configuration list for PBXProject "KDE Connect" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5E04DB70282CD63300969009 /* Debug */,
+				5E04DB71282CD63300969009 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5E04DB72282CD63300969009 /* Build configuration list for PBXNativeTarget "KDE Connect" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5E04DB73282CD63300969009 /* Debug */,
+				5E04DB74282CD63300969009 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5E04DB75282CD63300969009 /* Build configuration list for PBXNativeTarget "KDE ConnectTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5E04DB76282CD63300969009 /* Debug */,
+				5E04DB77282CD63300969009 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5E04DB78282CD63300969009 /* Build configuration list for PBXNativeTarget "KDE ConnectUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5E04DB79282CD63300969009 /* Debug */,
+				5E04DB7A282CD63300969009 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 5E04DB45282CD63200969009 /* Project object */;
+}
