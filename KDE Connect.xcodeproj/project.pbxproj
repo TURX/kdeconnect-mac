@@ -7,13 +7,64 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5E04DB51282CD63200969009 /* KDE_ConnectApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E04DB50282CD63200969009 /* KDE_ConnectApp.swift */; };
-		5E04DB53282CD63200969009 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E04DB52282CD63200969009 /* ContentView.swift */; };
+		5E04DB51282CD63200969009 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E04DB50282CD63200969009 /* App.swift */; };
 		5E04DB55282CD63200969009 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5E04DB54282CD63200969009 /* Assets.xcassets */; };
 		5E04DB58282CD63200969009 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5E04DB57282CD63200969009 /* Preview Assets.xcassets */; };
 		5E04DB63282CD63200969009 /* KDE_ConnectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E04DB62282CD63200969009 /* KDE_ConnectTests.swift */; };
 		5E04DB6D282CD63300969009 /* KDE_ConnectUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E04DB6C282CD63300969009 /* KDE_ConnectUITests.swift */; };
 		5E04DB6F282CD63300969009 /* KDE_ConnectUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E04DB6E282CD63300969009 /* KDE_ConnectUITestsLaunchTests.swift */; };
+		5E04DB81282CD6C600969009 /* DeviceItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E04DB7C282CD6C600969009 /* DeviceItemView.swift */; };
+		5E04DB82282CD6C600969009 /* DevicesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E04DB7D282CD6C600969009 /* DevicesView.swift */; };
+		5E04DB83282CD6C600969009 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E04DB7E282CD6C600969009 /* MainView.swift */; };
+		5E04DB84282CD6C600969009 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E04DB80282CD6C600969009 /* SettingsView.swift */; };
+		5E18E5D6282D307800C1F1BA /* PeerSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E18E5D5282D307800C1F1BA /* PeerSettingsView.swift */; };
+		5E2569A9282D0C3400857925 /* SettingsStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E256976282D0C3300857925 /* SettingsStore.m */; };
+		5E2569AA282D0C3400857925 /* NetworkPackage.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E256977282D0C3300857925 /* NetworkPackage.m */; };
+		5E2569AB282D0C3400857925 /* KeychainItemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E256979282D0C3300857925 /* KeychainItemWrapper.m */; };
+		5E2569AC282D0C3400857925 /* Device.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E25697E282D0C3300857925 /* Device.m */; };
+		5E2569AD282D0C3400857925 /* BackgroundService.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E25697F282D0C3300857925 /* BackgroundService.m */; };
+		5E2569AE282D0C3400857925 /* CertificateServiceHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E256980282D0C3300857925 /* CertificateServiceHelper.m */; };
+		5E2569BC282D0C3400857925 /* LanLinkProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E25699B282D0C3400857925 /* LanLinkProvider.m */; };
+		5E2569BD282D0C3400857925 /* LanLink.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E25699C282D0C3400857925 /* LanLink.m */; };
+		5E2569BE282D0C3400857925 /* BaseLinkProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E25699E282D0C3400857925 /* BaseLinkProvider.m */; };
+		5E2569BF282D0C3400857925 /* BaseLink.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E25699F282D0C3400857925 /* BaseLink.m */; };
+		5E2569C0282D0C3400857925 /* Backend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2569A3282D0C3400857925 /* Backend.swift */; };
+		5E2569C1282D0C3400857925 /* AlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2569A4282D0C3400857925 /* AlertManager.swift */; };
+		5E2569C2282D0C3400857925 /* SelfDeviceData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2569A5282D0C3400857925 /* SelfDeviceData.swift */; };
+		5E2569C3282D0C3400857925 /* CertificateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2569A6282D0C3400857925 /* CertificateService.swift */; };
+		5E2569C4282D0C3400857925 /* ConnectedDevicesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2569A7282D0C3400857925 /* ConnectedDevicesViewModel.swift */; };
+		5E2569C5282D0C3400857925 /* SystemSound.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2569A8282D0C3400857925 /* SystemSound.swift */; };
+		5E4C0BE5282E5CD700F57927 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4C0BE4282E5CD700F57927 /* NotificationManager.swift */; };
+		5E4C0BE9282EA12700F57927 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4C0BE8282EA12700F57927 /* AppDelegate.swift */; };
+		5E6D57B4282CD9AB00292282 /* DeviceSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6D57B3282CD9AB00292282 /* DeviceSettingsView.swift */; };
+		5E6D57B6282CD9BB00292282 /* AppSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6D57B5282CD9BB00292282 /* AppSettingsView.swift */; };
+		5E6D57B8282CD9D500292282 /* AdvancedSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6D57B7282CD9D500292282 /* AdvancedSettingsView.swift */; };
+		5E7570D7282D1D3F0095F517 /* OpenSSL in Frameworks */ = {isa = PBXBuildFile; productRef = 5E7570D6282D1D3F0095F517 /* OpenSSL */; };
+		5E7570DA282D1D650095F517 /* MediaPicker in Frameworks */ = {isa = PBXBuildFile; productRef = 5E7570D9282D1D650095F517 /* MediaPicker */; };
+		5E7570DD282D1D810095F517 /* CocoaAsyncSocket in Frameworks */ = {isa = PBXBuildFile; productRef = 5E7570DC282D1D810095F517 /* CocoaAsyncSocket */; };
+		5E7570E0282D1D9A0095F517 /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = 5E7570DF282D1D9A0095F517 /* Introspect */; };
+		5E7570F7282D213C0095F517 /* RemoteInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7570E3282D213C0095F517 /* RemoteInputView.swift */; };
+		5E7570F8282D213C0095F517 /* RemoteInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7570E4282D213C0095F517 /* RemoteInput.swift */; };
+		5E7570F9282D213C0095F517 /* Ping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7570E6282D213C0095F517 /* Ping.swift */; };
+		5E7570FA282D213C0095F517 /* PresenterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7570E8282D213C0095F517 /* PresenterView.swift */; };
+		5E7570FB282D213C0095F517 /* Presenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7570E9282D213C0095F517 /* Presenter.swift */; };
+		5E7570FC282D213C0095F517 /* RunCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7570EB282D213C0095F517 /* RunCommand.swift */; };
+		5E7570FD282D213C0095F517 /* CommandEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7570EC282D213C0095F517 /* CommandEntry.swift */; };
+		5E7570FE282D213C0095F517 /* RunCommandView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7570ED282D213C0095F517 /* RunCommandView.swift */; };
+		5E7570FF282D213C0095F517 /* Battery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7570EF282D213C0095F517 /* Battery.swift */; };
+		5E757100282D213C0095F517 /* FindMyPhone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7570F1282D213C0095F517 /* FindMyPhone.swift */; };
+		5E757101282D213C0095F517 /* Plugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7570F2282D213C0095F517 /* Plugin.swift */; };
+		5E757102282D213C0095F517 /* Share.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7570F4282D213C0095F517 /* Share.swift */; };
+		5E757103282D213C0095F517 /* Clipboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7570F6282D213C0095F517 /* Clipboard.swift */; };
+		5E7DFA2C282DF29000F5244E /* TapRecognizerViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7DFA25282DF29000F5244E /* TapRecognizerViewModifier.swift */; };
+		5E7DFA2D282DF29000F5244E /* BatteryStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7DFA26282DF29000F5244E /* BatteryStatus.swift */; };
+		5E7DFA2E282DF29000F5244E /* TwoFingerTapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7DFA27282DF29000F5244E /* TwoFingerTapView.swift */; };
+		5E7DFA2F282DF29000F5244E /* View+iOS14Compatibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7DFA29282DF29000F5244E /* View+iOS14Compatibility.swift */; };
+		5E7DFA30282DF29000F5244E /* iOS14CompatibleTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7DFA2A282DF29000F5244E /* iOS14CompatibleTextView.swift */; };
+		5E7DFA31282DF29000F5244E /* iOS14+FocusState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7DFA2B282DF29000F5244E /* iOS14+FocusState.swift */; };
+		5E7DFA34282DF63800F5244E /* InternalBattery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7DFA33282DF63800F5244E /* InternalBattery.swift */; };
+		5E7DFA36282DF66900F5244E /* InternalFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7DFA35282DF66900F5244E /* InternalFinder.swift */; };
+		5E7DFA38282E15E300F5244E /* AskNotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7DFA37282E15E300F5244E /* AskNotificationView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,8 +86,7 @@
 
 /* Begin PBXFileReference section */
 		5E04DB4D282CD63200969009 /* KDE Connect.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "KDE Connect.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		5E04DB50282CD63200969009 /* KDE_ConnectApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KDE_ConnectApp.swift; sourceTree = "<group>"; };
-		5E04DB52282CD63200969009 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		5E04DB50282CD63200969009 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		5E04DB54282CD63200969009 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5E04DB57282CD63200969009 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		5E04DB59282CD63200969009 /* KDE_Connect.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = KDE_Connect.entitlements; sourceTree = "<group>"; };
@@ -45,6 +95,64 @@
 		5E04DB68282CD63200969009 /* KDE ConnectUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "KDE ConnectUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E04DB6C282CD63300969009 /* KDE_ConnectUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KDE_ConnectUITests.swift; sourceTree = "<group>"; };
 		5E04DB6E282CD63300969009 /* KDE_ConnectUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KDE_ConnectUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		5E04DB7C282CD6C600969009 /* DeviceItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceItemView.swift; sourceTree = "<group>"; };
+		5E04DB7D282CD6C600969009 /* DevicesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DevicesView.swift; sourceTree = "<group>"; };
+		5E04DB7E282CD6C600969009 /* MainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		5E04DB80282CD6C600969009 /* SettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		5E18E5D5282D307800C1F1BA /* PeerSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeerSettingsView.swift; sourceTree = "<group>"; };
+		5E256976282D0C3300857925 /* SettingsStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsStore.m; sourceTree = "<group>"; };
+		5E256977282D0C3300857925 /* NetworkPackage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkPackage.m; sourceTree = "<group>"; };
+		5E256978282D0C3300857925 /* Device.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Device.h; sourceTree = "<group>"; };
+		5E256979282D0C3300857925 /* KeychainItemWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeychainItemWrapper.m; sourceTree = "<group>"; };
+		5E25697A282D0C3300857925 /* BackgroundService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackgroundService.h; sourceTree = "<group>"; };
+		5E25697B282D0C3300857925 /* NetworkPackage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkPackage.h; sourceTree = "<group>"; };
+		5E25697C282D0C3300857925 /* SettingsStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsStore.h; sourceTree = "<group>"; };
+		5E25697D282D0C3300857925 /* KeychainItemWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainItemWrapper.h; sourceTree = "<group>"; };
+		5E25697E282D0C3300857925 /* Device.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Device.m; sourceTree = "<group>"; };
+		5E25697F282D0C3300857925 /* BackgroundService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackgroundService.m; sourceTree = "<group>"; };
+		5E256980282D0C3300857925 /* CertificateServiceHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CertificateServiceHelper.m; sourceTree = "<group>"; };
+		5E256999282D0C3400857925 /* LanLinkProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LanLinkProvider.h; sourceTree = "<group>"; };
+		5E25699A282D0C3400857925 /* LanLink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LanLink.h; sourceTree = "<group>"; };
+		5E25699B282D0C3400857925 /* LanLinkProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LanLinkProvider.m; sourceTree = "<group>"; };
+		5E25699C282D0C3400857925 /* LanLink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LanLink.m; sourceTree = "<group>"; };
+		5E25699D282D0C3400857925 /* BaseLink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseLink.h; sourceTree = "<group>"; };
+		5E25699E282D0C3400857925 /* BaseLinkProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseLinkProvider.m; sourceTree = "<group>"; };
+		5E25699F282D0C3400857925 /* BaseLink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseLink.m; sourceTree = "<group>"; };
+		5E2569A0282D0C3400857925 /* LanLink-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "LanLink-Bridging-Header.h"; sourceTree = "<group>"; };
+		5E2569A1282D0C3400857925 /* BaseLinkProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseLinkProvider.h; sourceTree = "<group>"; };
+		5E2569A3282D0C3400857925 /* Backend.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Backend.swift; sourceTree = "<group>"; };
+		5E2569A4282D0C3400857925 /* AlertManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertManager.swift; sourceTree = "<group>"; };
+		5E2569A5282D0C3400857925 /* SelfDeviceData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelfDeviceData.swift; sourceTree = "<group>"; };
+		5E2569A6282D0C3400857925 /* CertificateService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CertificateService.swift; sourceTree = "<group>"; };
+		5E2569A7282D0C3400857925 /* ConnectedDevicesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectedDevicesViewModel.swift; sourceTree = "<group>"; };
+		5E2569A8282D0C3400857925 /* SystemSound.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SystemSound.swift; sourceTree = "<group>"; };
+		5E4C0BE4282E5CD700F57927 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
+		5E4C0BE8282EA12700F57927 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		5E6D57B3282CD9AB00292282 /* DeviceSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceSettingsView.swift; sourceTree = "<group>"; };
+		5E6D57B5282CD9BB00292282 /* AppSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettingsView.swift; sourceTree = "<group>"; };
+		5E6D57B7282CD9D500292282 /* AdvancedSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancedSettingsView.swift; sourceTree = "<group>"; };
+		5E7570E3282D213C0095F517 /* RemoteInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteInputView.swift; sourceTree = "<group>"; };
+		5E7570E4282D213C0095F517 /* RemoteInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteInput.swift; sourceTree = "<group>"; };
+		5E7570E6282D213C0095F517 /* Ping.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ping.swift; sourceTree = "<group>"; };
+		5E7570E8282D213C0095F517 /* PresenterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresenterView.swift; sourceTree = "<group>"; };
+		5E7570E9282D213C0095F517 /* Presenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Presenter.swift; sourceTree = "<group>"; };
+		5E7570EB282D213C0095F517 /* RunCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RunCommand.swift; sourceTree = "<group>"; };
+		5E7570EC282D213C0095F517 /* CommandEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommandEntry.swift; sourceTree = "<group>"; };
+		5E7570ED282D213C0095F517 /* RunCommandView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RunCommandView.swift; sourceTree = "<group>"; };
+		5E7570EF282D213C0095F517 /* Battery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Battery.swift; sourceTree = "<group>"; };
+		5E7570F1282D213C0095F517 /* FindMyPhone.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindMyPhone.swift; sourceTree = "<group>"; };
+		5E7570F2282D213C0095F517 /* Plugin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Plugin.swift; sourceTree = "<group>"; };
+		5E7570F4282D213C0095F517 /* Share.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Share.swift; sourceTree = "<group>"; };
+		5E7570F6282D213C0095F517 /* Clipboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Clipboard.swift; sourceTree = "<group>"; };
+		5E7DFA25282DF29000F5244E /* TapRecognizerViewModifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TapRecognizerViewModifier.swift; sourceTree = "<group>"; };
+		5E7DFA26282DF29000F5244E /* BatteryStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BatteryStatus.swift; sourceTree = "<group>"; };
+		5E7DFA27282DF29000F5244E /* TwoFingerTapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwoFingerTapView.swift; sourceTree = "<group>"; };
+		5E7DFA29282DF29000F5244E /* View+iOS14Compatibility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "View+iOS14Compatibility.swift"; sourceTree = "<group>"; };
+		5E7DFA2A282DF29000F5244E /* iOS14CompatibleTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iOS14CompatibleTextView.swift; sourceTree = "<group>"; };
+		5E7DFA2B282DF29000F5244E /* iOS14+FocusState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "iOS14+FocusState.swift"; sourceTree = "<group>"; };
+		5E7DFA33282DF63800F5244E /* InternalBattery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternalBattery.swift; sourceTree = "<group>"; };
+		5E7DFA35282DF66900F5244E /* InternalFinder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternalFinder.swift; sourceTree = "<group>"; };
+		5E7DFA37282E15E300F5244E /* AskNotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AskNotificationView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +160,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E7570D7282D1D3F0095F517 /* OpenSSL in Frameworks */,
+				5E7570E0282D1D9A0095F517 /* Introspect in Frameworks */,
+				5E7570DA282D1D650095F517 /* MediaPicker in Frameworks */,
+				5E7570DD282D1D810095F517 /* CocoaAsyncSocket in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -95,8 +207,11 @@
 		5E04DB4F282CD63200969009 /* KDE Connect */ = {
 			isa = PBXGroup;
 			children = (
-				5E04DB50282CD63200969009 /* KDE_ConnectApp.swift */,
-				5E04DB52282CD63200969009 /* ContentView.swift */,
+				5E7DFA23282DF24800F5244E /* Views */,
+				5E7570E1282D213C0095F517 /* Plugins and Plugin Views */,
+				5E256975282D0C3300857925 /* ObjC Backend */,
+				5E256997282D0C3400857925 /* ObjC Network Backend */,
+				5E2569A2282D0C3400857925 /* Swift Backend */,
 				5E04DB54282CD63200969009 /* Assets.xcassets */,
 				5E04DB59282CD63200969009 /* KDE_Connect.entitlements */,
 				5E04DB56282CD63200969009 /* Preview Content */,
@@ -129,6 +244,224 @@
 			path = "KDE ConnectUITests";
 			sourceTree = "<group>";
 		};
+		5E04DB7B282CD6C600969009 /* Devices */ = {
+			isa = PBXGroup;
+			children = (
+				5E04DB7C282CD6C600969009 /* DeviceItemView.swift */,
+				5E04DB7D282CD6C600969009 /* DevicesView.swift */,
+			);
+			path = Devices;
+			sourceTree = "<group>";
+		};
+		5E256975282D0C3300857925 /* ObjC Backend */ = {
+			isa = PBXGroup;
+			children = (
+				5E256976282D0C3300857925 /* SettingsStore.m */,
+				5E256977282D0C3300857925 /* NetworkPackage.m */,
+				5E256978282D0C3300857925 /* Device.h */,
+				5E256979282D0C3300857925 /* KeychainItemWrapper.m */,
+				5E25697A282D0C3300857925 /* BackgroundService.h */,
+				5E25697B282D0C3300857925 /* NetworkPackage.h */,
+				5E25697C282D0C3300857925 /* SettingsStore.h */,
+				5E25697D282D0C3300857925 /* KeychainItemWrapper.h */,
+				5E25697E282D0C3300857925 /* Device.m */,
+				5E25697F282D0C3300857925 /* BackgroundService.m */,
+				5E256980282D0C3300857925 /* CertificateServiceHelper.m */,
+			);
+			name = "ObjC Backend";
+			path = "KDE Connect/ObjC Backend";
+			sourceTree = SOURCE_ROOT;
+		};
+		5E256997282D0C3400857925 /* ObjC Network Backend */ = {
+			isa = PBXGroup;
+			children = (
+				5E256998282D0C3400857925 /* lanBackend */,
+				5E25699D282D0C3400857925 /* BaseLink.h */,
+				5E25699E282D0C3400857925 /* BaseLinkProvider.m */,
+				5E25699F282D0C3400857925 /* BaseLink.m */,
+				5E2569A0282D0C3400857925 /* LanLink-Bridging-Header.h */,
+				5E2569A1282D0C3400857925 /* BaseLinkProvider.h */,
+			);
+			name = "ObjC Network Backend";
+			path = "KDE Connect/ObjC Network Backend";
+			sourceTree = SOURCE_ROOT;
+		};
+		5E256998282D0C3400857925 /* lanBackend */ = {
+			isa = PBXGroup;
+			children = (
+				5E256999282D0C3400857925 /* LanLinkProvider.h */,
+				5E25699A282D0C3400857925 /* LanLink.h */,
+				5E25699B282D0C3400857925 /* LanLinkProvider.m */,
+				5E25699C282D0C3400857925 /* LanLink.m */,
+			);
+			path = lanBackend;
+			sourceTree = "<group>";
+		};
+		5E2569A2282D0C3400857925 /* Swift Backend */ = {
+			isa = PBXGroup;
+			children = (
+				5E7DFA32282DF62600F5244E /* Mac */,
+				5E2569A3282D0C3400857925 /* Backend.swift */,
+				5E2569A4282D0C3400857925 /* AlertManager.swift */,
+				5E2569A5282D0C3400857925 /* SelfDeviceData.swift */,
+				5E2569A6282D0C3400857925 /* CertificateService.swift */,
+				5E2569A7282D0C3400857925 /* ConnectedDevicesViewModel.swift */,
+				5E2569A8282D0C3400857925 /* SystemSound.swift */,
+			);
+			name = "Swift Backend";
+			path = "KDE Connect/Swift Backend";
+			sourceTree = SOURCE_ROOT;
+		};
+		5E6D57B1282CD8B700292282 /* Main Window */ = {
+			isa = PBXGroup;
+			children = (
+				5E04DB7E282CD6C600969009 /* MainView.swift */,
+				5E04DB50282CD63200969009 /* App.swift */,
+				5E7DFA37282E15E300F5244E /* AskNotificationView.swift */,
+			);
+			path = "Main Window";
+			sourceTree = "<group>";
+		};
+		5E6D57B2282CD97E00292282 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				5E04DB80282CD6C600969009 /* SettingsView.swift */,
+				5E6D57B3282CD9AB00292282 /* DeviceSettingsView.swift */,
+				5E6D57B5282CD9BB00292282 /* AppSettingsView.swift */,
+				5E6D57B7282CD9D500292282 /* AdvancedSettingsView.swift */,
+				5E18E5D5282D307800C1F1BA /* PeerSettingsView.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		5E7570E1282D213C0095F517 /* Plugins and Plugin Views */ = {
+			isa = PBXGroup;
+			children = (
+				5E7570E2282D213C0095F517 /* RemoteInput */,
+				5E7570E5282D213C0095F517 /* Ping */,
+				5E7570E7282D213C0095F517 /* Presenter */,
+				5E7570EA282D213C0095F517 /* RunCommand */,
+				5E7570EE282D213C0095F517 /* Battery */,
+				5E7570F0282D213C0095F517 /* FindMyPhone */,
+				5E7570F2282D213C0095F517 /* Plugin.swift */,
+				5E7570F3282D213C0095F517 /* Share */,
+				5E7570F5282D213C0095F517 /* Clipboard */,
+			);
+			name = "Plugins and Plugin Views";
+			path = "KDE Connect/Plugins and Plugin Views";
+			sourceTree = SOURCE_ROOT;
+		};
+		5E7570E2282D213C0095F517 /* RemoteInput */ = {
+			isa = PBXGroup;
+			children = (
+				5E7570E3282D213C0095F517 /* RemoteInputView.swift */,
+				5E7570E4282D213C0095F517 /* RemoteInput.swift */,
+			);
+			path = RemoteInput;
+			sourceTree = "<group>";
+		};
+		5E7570E5282D213C0095F517 /* Ping */ = {
+			isa = PBXGroup;
+			children = (
+				5E7570E6282D213C0095F517 /* Ping.swift */,
+			);
+			path = Ping;
+			sourceTree = "<group>";
+		};
+		5E7570E7282D213C0095F517 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				5E7570E8282D213C0095F517 /* PresenterView.swift */,
+				5E7570E9282D213C0095F517 /* Presenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		5E7570EA282D213C0095F517 /* RunCommand */ = {
+			isa = PBXGroup;
+			children = (
+				5E7570EB282D213C0095F517 /* RunCommand.swift */,
+				5E7570EC282D213C0095F517 /* CommandEntry.swift */,
+				5E7570ED282D213C0095F517 /* RunCommandView.swift */,
+			);
+			path = RunCommand;
+			sourceTree = "<group>";
+		};
+		5E7570EE282D213C0095F517 /* Battery */ = {
+			isa = PBXGroup;
+			children = (
+				5E7570EF282D213C0095F517 /* Battery.swift */,
+			);
+			path = Battery;
+			sourceTree = "<group>";
+		};
+		5E7570F0282D213C0095F517 /* FindMyPhone */ = {
+			isa = PBXGroup;
+			children = (
+				5E7570F1282D213C0095F517 /* FindMyPhone.swift */,
+			);
+			path = FindMyPhone;
+			sourceTree = "<group>";
+		};
+		5E7570F3282D213C0095F517 /* Share */ = {
+			isa = PBXGroup;
+			children = (
+				5E7570F4282D213C0095F517 /* Share.swift */,
+			);
+			path = Share;
+			sourceTree = "<group>";
+		};
+		5E7570F5282D213C0095F517 /* Clipboard */ = {
+			isa = PBXGroup;
+			children = (
+				5E7570F6282D213C0095F517 /* Clipboard.swift */,
+			);
+			path = Clipboard;
+			sourceTree = "<group>";
+		};
+		5E7DFA23282DF24800F5244E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5E7DFA24282DF25800F5244E /* Abstract Views */,
+				5E6D57B2282CD97E00292282 /* Settings */,
+				5E04DB7B282CD6C600969009 /* Devices */,
+				5E6D57B1282CD8B700292282 /* Main Window */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		5E7DFA24282DF25800F5244E /* Abstract Views */ = {
+			isa = PBXGroup;
+			children = (
+				5E7DFA26282DF29000F5244E /* BatteryStatus.swift */,
+				5E7DFA28282DF29000F5244E /* iOS14Compatibility */,
+				5E7DFA25282DF29000F5244E /* TapRecognizerViewModifier.swift */,
+				5E7DFA27282DF29000F5244E /* TwoFingerTapView.swift */,
+			);
+			path = "Abstract Views";
+			sourceTree = "<group>";
+		};
+		5E7DFA28282DF29000F5244E /* iOS14Compatibility */ = {
+			isa = PBXGroup;
+			children = (
+				5E7DFA29282DF29000F5244E /* View+iOS14Compatibility.swift */,
+				5E7DFA2A282DF29000F5244E /* iOS14CompatibleTextView.swift */,
+				5E7DFA2B282DF29000F5244E /* iOS14+FocusState.swift */,
+			);
+			path = iOS14Compatibility;
+			sourceTree = "<group>";
+		};
+		5E7DFA32282DF62600F5244E /* Mac */ = {
+			isa = PBXGroup;
+			children = (
+				5E7DFA33282DF63800F5244E /* InternalBattery.swift */,
+				5E7DFA35282DF66900F5244E /* InternalFinder.swift */,
+				5E4C0BE4282E5CD700F57927 /* NotificationManager.swift */,
+				5E4C0BE8282EA12700F57927 /* AppDelegate.swift */,
+			);
+			path = Mac;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -145,6 +478,12 @@
 			dependencies = (
 			);
 			name = "KDE Connect";
+			packageProductDependencies = (
+				5E7570D6282D1D3F0095F517 /* OpenSSL */,
+				5E7570D9282D1D650095F517 /* MediaPicker */,
+				5E7570DC282D1D810095F517 /* CocoaAsyncSocket */,
+				5E7570DF282D1D9A0095F517 /* Introspect */,
+			);
 			productName = "KDE Connect";
 			productReference = 5E04DB4D282CD63200969009 /* KDE Connect.app */;
 			productType = "com.apple.product-type.application";
@@ -217,6 +556,12 @@
 				Base,
 			);
 			mainGroup = 5E04DB44282CD63200969009;
+			packageReferences = (
+				5E7570D5282D1D3F0095F517 /* XCRemoteSwiftPackageReference "OpenSSL" */,
+				5E7570D8282D1D650095F517 /* XCRemoteSwiftPackageReference "SwiftUI-MediaPicker" */,
+				5E7570DB282D1D810095F517 /* XCRemoteSwiftPackageReference "CocoaAsyncSocket" */,
+				5E7570DE282D1D990095F517 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
+			);
 			productRefGroup = 5E04DB4E282CD63200969009 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -259,8 +604,55 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5E04DB53282CD63200969009 /* ContentView.swift in Sources */,
-				5E04DB51282CD63200969009 /* KDE_ConnectApp.swift in Sources */,
+				5E7DFA2C282DF29000F5244E /* TapRecognizerViewModifier.swift in Sources */,
+				5E2569C5282D0C3400857925 /* SystemSound.swift in Sources */,
+				5E2569A9282D0C3400857925 /* SettingsStore.m in Sources */,
+				5E2569C2282D0C3400857925 /* SelfDeviceData.swift in Sources */,
+				5E2569C3282D0C3400857925 /* CertificateService.swift in Sources */,
+				5E7570F8282D213C0095F517 /* RemoteInput.swift in Sources */,
+				5E4C0BE5282E5CD700F57927 /* NotificationManager.swift in Sources */,
+				5E04DB51282CD63200969009 /* App.swift in Sources */,
+				5E7DFA38282E15E300F5244E /* AskNotificationView.swift in Sources */,
+				5E7570FF282D213C0095F517 /* Battery.swift in Sources */,
+				5E7570FB282D213C0095F517 /* Presenter.swift in Sources */,
+				5E757103282D213C0095F517 /* Clipboard.swift in Sources */,
+				5E2569AD282D0C3400857925 /* BackgroundService.m in Sources */,
+				5E7DFA34282DF63800F5244E /* InternalBattery.swift in Sources */,
+				5E6D57B4282CD9AB00292282 /* DeviceSettingsView.swift in Sources */,
+				5E7DFA2F282DF29000F5244E /* View+iOS14Compatibility.swift in Sources */,
+				5E7DFA36282DF66900F5244E /* InternalFinder.swift in Sources */,
+				5E7DFA31282DF29000F5244E /* iOS14+FocusState.swift in Sources */,
+				5E7570F7282D213C0095F517 /* RemoteInputView.swift in Sources */,
+				5E7570FA282D213C0095F517 /* PresenterView.swift in Sources */,
+				5E7570FC282D213C0095F517 /* RunCommand.swift in Sources */,
+				5E757102282D213C0095F517 /* Share.swift in Sources */,
+				5E2569AC282D0C3400857925 /* Device.m in Sources */,
+				5E2569AE282D0C3400857925 /* CertificateServiceHelper.m in Sources */,
+				5E757100282D213C0095F517 /* FindMyPhone.swift in Sources */,
+				5E7570FD282D213C0095F517 /* CommandEntry.swift in Sources */,
+				5E2569AA282D0C3400857925 /* NetworkPackage.m in Sources */,
+				5E2569BC282D0C3400857925 /* LanLinkProvider.m in Sources */,
+				5E2569BE282D0C3400857925 /* BaseLinkProvider.m in Sources */,
+				5E2569C0282D0C3400857925 /* Backend.swift in Sources */,
+				5E7570F9282D213C0095F517 /* Ping.swift in Sources */,
+				5E2569BD282D0C3400857925 /* LanLink.m in Sources */,
+				5E757101282D213C0095F517 /* Plugin.swift in Sources */,
+				5E2569BF282D0C3400857925 /* BaseLink.m in Sources */,
+				5E2569C4282D0C3400857925 /* ConnectedDevicesViewModel.swift in Sources */,
+				5E7DFA2D282DF29000F5244E /* BatteryStatus.swift in Sources */,
+				5E7DFA2E282DF29000F5244E /* TwoFingerTapView.swift in Sources */,
+				5E4C0BE9282EA12700F57927 /* AppDelegate.swift in Sources */,
+				5E6D57B6282CD9BB00292282 /* AppSettingsView.swift in Sources */,
+				5E2569C1282D0C3400857925 /* AlertManager.swift in Sources */,
+				5E04DB84282CD6C600969009 /* SettingsView.swift in Sources */,
+				5E2569AB282D0C3400857925 /* KeychainItemWrapper.m in Sources */,
+				5E04DB82282CD6C600969009 /* DevicesView.swift in Sources */,
+				5E04DB83282CD6C600969009 /* MainView.swift in Sources */,
+				5E7DFA30282DF29000F5244E /* iOS14CompatibleTextView.swift in Sources */,
+				5E04DB81282CD6C600969009 /* DeviceItemView.swift in Sources */,
+				5E18E5D6282D307800C1F1BA /* PeerSettingsView.swift in Sources */,
+				5E7570FE282D213C0095F517 /* RunCommandView.swift in Sources */,
+				5E6D57B8282CD9D500292282 /* AdvancedSettingsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -415,7 +807,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = "KDE Connect/KDE_Connect.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -424,15 +818,18 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.kde.turx.kdeconnect-mac.KDE-Connect";
+				MARKETING_VERSION = 0.0.1;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.kde.kdeconnect-mac";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "KDE Connect/ObjC Network Backend/LanLink-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -442,7 +839,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = "KDE Connect/KDE_Connect.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -451,15 +850,18 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.kde.turx.kdeconnect-mac.KDE-Connect";
+				MARKETING_VERSION = 0.0.1;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.kde.kdeconnect-mac";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "KDE Connect/ObjC Network Backend/LanLink-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
@@ -475,7 +877,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 12.3;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.kde.turx.kdeconnect-mac.KDE-ConnectTests";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.kde.kdeconnect-mac.KDE-ConnectTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
@@ -494,7 +896,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 12.3;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.kde.turx.kdeconnect-mac.KDE-ConnectTests";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.kde.kdeconnect-mac.KDE-ConnectTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
@@ -506,12 +908,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 3ZWV7C62H6;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.kde.turx.kdeconnect-mac.KDE-ConnectUITests";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.kde.kdeconnect-mac.KDE-ConnectUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
@@ -523,12 +926,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 3ZWV7C62H6;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.kde.turx.kdeconnect-mac.KDE-ConnectUITests";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.kde.kdeconnect-mac.KDE-ConnectUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
@@ -576,6 +980,64 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		5E7570D5282D1D3F0095F517 /* XCRemoteSwiftPackageReference "OpenSSL" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/krzyzanowskim/OpenSSL.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.1.1100;
+			};
+		};
+		5E7570D8282D1D650095F517 /* XCRemoteSwiftPackageReference "SwiftUI-MediaPicker" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/UWAppDev/SwiftUI-MediaPicker.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+		5E7570DB282D1D810095F517 /* XCRemoteSwiftPackageReference "CocoaAsyncSocket" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ApolloZhu/CocoaAsyncSocket";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		5E7570DE282D1D990095F517 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/siteline/SwiftUI-Introspect";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.1.4;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		5E7570D6282D1D3F0095F517 /* OpenSSL */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5E7570D5282D1D3F0095F517 /* XCRemoteSwiftPackageReference "OpenSSL" */;
+			productName = OpenSSL;
+		};
+		5E7570D9282D1D650095F517 /* MediaPicker */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5E7570D8282D1D650095F517 /* XCRemoteSwiftPackageReference "SwiftUI-MediaPicker" */;
+			productName = MediaPicker;
+		};
+		5E7570DC282D1D810095F517 /* CocoaAsyncSocket */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5E7570DB282D1D810095F517 /* XCRemoteSwiftPackageReference "CocoaAsyncSocket" */;
+			productName = CocoaAsyncSocket;
+		};
+		5E7570DF282D1D9A0095F517 /* Introspect */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5E7570DE282D1D990095F517 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
+			productName = Introspect;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 5E04DB45282CD63200969009 /* Project object */;
 }

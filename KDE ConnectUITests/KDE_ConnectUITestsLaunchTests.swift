@@ -2,7 +2,7 @@
 //  KDE_ConnectUITestsLaunchTests.swift
 //  KDE ConnectUITests
 //
-//  Created by 涂睿轩 on 2022/05/12.
+//  Created by Ruixuan Tu on 2022/05/12.
 //
 
 import XCTest
