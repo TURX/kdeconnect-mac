@@ -107,7 +107,7 @@ Keychain API expects as a validly constructed container class.
 		// amongst multiple apps whose code signing entitlements contain the same keychain access group.
 		if (accessGroup != nil)
 		{
-#if TARGET_IPHONE_SIMULATOR || TARGET_OS_OSX
+#if TARGET_IPHONE_SIMULATOR
 			// Ignore the access group if running on the iPhone simulator.
 			// 
 			// Apps that are built for the simulator aren't signed, so there's no keychain access group
@@ -124,6 +124,9 @@ Keychain API expects as a validly constructed container class.
 		// Use the proper search constants, return only the attributes of the first match.
         [genericPasswordQuery setObject:(id)kSecMatchLimitOne forKey:(id)kSecMatchLimit];
         [genericPasswordQuery setObject:(id)kCFBooleanTrue forKey:(id)kSecReturnAttributes];
+#if TARGET_OS_OSX
+        [genericPasswordQuery setObject:(id)kCFBooleanTrue forKey:(id)kSecReturnData];
+#endif
         
         NSDictionary *tempQuery = [NSDictionary dictionaryWithDictionary:genericPasswordQuery];
         
@@ -136,9 +139,12 @@ Keychain API expects as a validly constructed container class.
 			
 			// Add the generic attribute and the keychain access group.
 			[keychainItemData setObject:identifier forKey:(id)kSecAttrGeneric];
+#if TARGET_OS_OSX
+            [keychainItemData setObject:@"kdeconnect-uuid" forKey:(id)kSecAttrLabel];
+#endif
 			if (accessGroup != nil)
 			{
-#if TARGET_IPHONE_SIMULATOR || TARGET_OS_OSX
+#if TARGET_IPHONE_SIMULATOR
 				// Ignore the access group if running on the iPhone simulator.
 				// 
 				// Apps that are built for the simulator aren't signed, so there's no keychain access group
@@ -244,7 +250,13 @@ Keychain API expects as a validly constructed container class.
     
     // Acquire the password data from the attributes.
     NSData *passwordData = NULL;
-    if (SecItemCopyMatching((CFDictionaryRef)returnDictionary, (CFTypeRef)&passwordData) == noErr)
+    bool status = false;
+#if TARGET_OS_OSX
+    status = ((passwordData = [returnDictionary objectForKey:(id)kSecValueData]));
+#else
+    status = SecItemCopyMatching((CFDictionaryRef)returnDictionary, (CFTypeRef)&passwordData) == noErr);
+#endif
+    if (status)
     {
         // Remove the search, class, and identifier key/value, we don't need them anymore.
         [returnDictionary removeObjectForKey:(id)kSecReturnData];
