@@ -120,10 +120,10 @@ struct MainView: View {
     
     func refreshDiscoveryAndList() {
         withAnimation {
-//            backgroundService.refreshDiscovery()
-//            backgroundService.refreshVisibleDeviceList()
-//            broadcastBatteryStatusAllDevices()
-//            requestBatteryStatusAllDevices()
+            backgroundService.refreshDiscovery()
+            backgroundService.refreshVisibleDeviceList()
+            broadcastBatteryStatusAllDevices()
+            requestBatteryStatusAllDevices()
         }
     }
 }

@@ -69,13 +69,13 @@ struct DevicesView: View {
         default:
             var deviceIcons = Array<DeviceItemView>()
             for key in connectedDevicesIds {
-                deviceIcons.append(DeviceItemView(deviceId: key, parent: self, deviceName: .constant(viewModel.connectedDevices[key] ?? "Unknown device"), emoji: getEmojiFromDeviceType(deviceType: backgroundService._devices[key]!._type), backgroundColor: .green))
+                deviceIcons.append(DeviceItemView(deviceId: key, parent: self, deviceName: .constant(viewModel.connectedDevices[key] ?? "Unknown device"), emoji: getEmojiFromDeviceType(deviceType: backgroundService._devices[key]?._type ?? .unknown), backgroundColor: .green))
             }
             for key in savedDevicesIds {
-                deviceIcons.append(DeviceItemView(deviceId: key, parent: self, deviceName: .constant(viewModel.savedDevices[key] ?? "Unknown device"), emoji: getEmojiFromDeviceType(deviceType: backgroundService._devices[key]!._type), backgroundColor: .gray))
+                deviceIcons.append(DeviceItemView(deviceId: key, parent: self, deviceName: .constant(viewModel.savedDevices[key] ?? "Unknown device"), emoji: getEmojiFromDeviceType(deviceType: backgroundService._devices[key]?._type ?? .unknown), backgroundColor: .gray))
             }
             for key in visibleDevicesIds {
-                deviceIcons.append(DeviceItemView(deviceId: key, parent: self, deviceName: .constant(viewModel.visibleDevices[key] ?? "Unknown device"), emoji: getEmojiFromDeviceType(deviceType: backgroundService._devices[key]!._type), backgroundColor: .cyan))
+                deviceIcons.append(DeviceItemView(deviceId: key, parent: self, deviceName: .constant(viewModel.visibleDevices[key] ?? "Unknown device"), emoji: getEmojiFromDeviceType(deviceType: backgroundService._devices[key]?._type ?? .unknown), backgroundColor: .cyan))
             }
             return deviceIcons
         }
@@ -101,6 +101,9 @@ struct DevicesView: View {
             .padding(.all)
             .onTapGesture {
                 self.clickedDeviceId = "-1"
+            }
+            .onAppear {
+                broadcastBatteryStatusAllDevices()
             }
         }
     }
