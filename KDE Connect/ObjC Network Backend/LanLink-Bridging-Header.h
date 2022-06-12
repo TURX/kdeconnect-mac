@@ -14,3 +14,6 @@
 #import "NetworkPackage.h"
 
 OSStatus generateSecIdentityForUUID(NSString *uuid);
+#if TARGET_OS_OSX
+NSString* extractSecCertificateDigest(SecCertificateRef cert);
+#endif
