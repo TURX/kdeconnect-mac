@@ -135,7 +135,6 @@ OSStatus generateSecIdentityForUUID(NSString *uuid)
             (id)kSecValueRef:   (__bridge id)identityApp,
             // Do not use the sec class when adding, adding an identity will add key, cert and the identity
             // (id)kSecClass:      (id)kSecClassIdentity,
-
             (id)kSecAttrLabel:  (id)uuid,
         };
         OSStatus status = SecItemAdd((__bridge CFDictionaryRef)addQuery, NULL);
@@ -148,8 +147,10 @@ OSStatus generateSecIdentityForUUID(NSString *uuid)
         CFRelease(identityDict);
     }
 #endif
+
     // Delete the temp file
     [[NSFileManager defaultManager] removeItemAtPath:p12FilePath error:nil];
+
 #if !TARGET_OS_OSX
     return noErr;
 #else
