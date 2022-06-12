@@ -28,6 +28,7 @@ import CryptoKit
         super.init()
         hostIdentity = getHostIdentityFromKeychain()
         hostCertificateSHA256HashFormattedString = getHostSHA256HashFullyFormatted()
+        print("Host certificate SHA256: \(hostCertificateSHA256HashFormattedString ?? "nil")")
     }
     
     @objc func getHostSHA256HashFullyFormatted() -> String {
@@ -39,25 +40,58 @@ import CryptoKit
     }
     
     @objc func getHostIdentityFromKeychain() -> SecIdentity? {
+        // https://developer.apple.com/documentation/network/creating_an_identity_for_local_network_tls
+        var identityApp: SecIdentity? = nil
+#if !os(macOS)
         let keychainItemQuery: CFDictionary = [
             kSecClass: kSecClassIdentity,
             kSecAttrLabel: NetworkPackage.getUUID() as Any,
             kSecReturnRef: true
         ] as CFDictionary
-        var identityApp: AnyObject? = nil
-        let status: OSStatus = SecItemCopyMatching(keychainItemQuery, &identityApp)
-        print("getIdentityFromKeychain completed with \(status)")
+        func iosFetchIdentity() {
+            let status: OSStatus = SecItemCopyMatching(keychainItemQuery, &identityApp)
+            print("getIdentityFromKeychain completed with \(status)")
+        }
+        iosFetchIdentity()
+#else
+        let getquery = [
+            kSecClass: kSecClassCertificate,
+            kSecAttrLabel: NetworkPackage.getUUID()! as Any,
+            kSecReturnRef: true,
+            kSecMatchLimit: kSecMatchLimitOne
+        ] as NSDictionary
+        var item: CFTypeRef?
+        func macFetchIdentity() {
+            do {
+                let status = SecItemCopyMatching(getquery as CFDictionary, &item)
+                guard status == errSecSuccess else {
+                    print("getHostIdentityFromKeychain refetch status failed with \(status)")
+                    throw NSError()
+                }
+                let certificate = item as! SecCertificate
+                let identityStatus = SecIdentityCreateWithCertificate(nil, certificate, &identityApp)
+                guard identityStatus == errSecSuccess else {
+                    print("getHostIdentityFromKeychain refetch identityStatus failed with \(identityStatus)")
+                    throw NSError()
+                }
+            } catch _ {}
+        }
+#endif
         if (identityApp == nil) {
             if (generateSecIdentityForUUID(NetworkPackage.getUUID()) == noErr) {
                 // Refetch
-                SecItemCopyMatching(keychainItemQuery, &identityApp);
+#if !os(macOS)
+                iosFetchIdentity()
+#else
+                macFetchIdentity()
+#endif
                 if (identityApp != nil) {
-                    return (identityApp as! SecIdentity);
+                    return (identityApp!);
                 }
             }
             return nil
         } else {
-            return (identityApp as! SecIdentity)
+            return (identityApp!)
         }
     }
     
