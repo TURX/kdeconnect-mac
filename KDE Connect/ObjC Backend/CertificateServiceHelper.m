@@ -11,6 +11,7 @@
 #import <Security/SecTrust.h>
 #import <Security/CipherSuite.h>
 #import <Security/SecIdentity.h>
+#import <Security/SecCertificate.h>
 #import <CommonCrypto/CommonDigest.h>
 #import <CommonCrypto/CommonCryptor.h>
 
@@ -24,8 +25,12 @@
 OSStatus generateSecIdentityForUUID(NSString *uuid)
 {
     // Force to remove the old identity, otherwise the new identity cannot be stored
+#if !TARGET_OS_OSX
     NSDictionary *spec = @{(__bridge id)kSecClass: (id)kSecClassIdentity};
     SecItemDelete((__bridge CFDictionaryRef)spec);
+#else
+    // Removal for macOS is called in CertificateService.swift before this function call
+#endif
 
     // Generate a private key
     EVP_PKEY * pkey;
@@ -77,9 +82,15 @@ OSStatus generateSecIdentityForUUID(NSString *uuid)
 
     // Create p12 format data
     PKCS12 *p12 = NULL;
+#if !TARGET_OS_OSX
     p12 = PKCS12_create(/* password */ "", /* name */ "KDE Connect", pkey, x509,
                         /* ca */ NULL, /* nid_key */ 0, /* nid_cert */ 0,
                         /* iter */ 0, /* mac_iter */ PKCS12_DEFAULT_ITER, /* keytype */ 0);
+#else
+    p12 = PKCS12_create(/* password */ NULL, /* name */ "KDE Connect", pkey, x509,
+                        /* ca */ NULL, /* nid_key */ 0, /* nid_cert */ 0,
+                        /* iter */ 0, /* mac_iter */ PKCS12_DEFAULT_ITER, /* keytype */ 0);
+#endif
     if(!p12) {
         @throw [[NSException alloc] initWithName:@"Fail getP12File" reason:@"Error creating PKCS#12 structure" userInfo:nil];
     }
@@ -112,6 +123,7 @@ OSStatus generateSecIdentityForUUID(NSString *uuid)
     CFArrayRef items = CFArrayCreate(NULL, 0, 0, NULL);
     OSStatus securityError = SecPKCS12Import((CFDataRef) p12Data,
                                              (CFDictionaryRef)options, &items);
+#if !TARGET_OS_OSX
     SecIdentityRef identityApp;
     if (securityError == noErr && CFArrayGetCount(items) > 0) {
         CFDictionaryRef identityDict = CFArrayGetValueAtIndex(items, 0);
@@ -134,9 +146,29 @@ OSStatus generateSecIdentityForUUID(NSString *uuid)
         // Release finished CF Objects
         CFRelease(identityDict);
     }
+#endif
 
     // Delete the temp file
     [[NSFileManager defaultManager] removeItemAtPath:p12FilePath error:nil];
 
+#if !TARGET_OS_OSX
     return noErr;
+#else
+    return securityError;
+#endif
 }
+
+#if TARGET_OS_OSX
+NSString* extractSecCertificateDigest(SecCertificateRef cert) {
+    // https://stackoverflow.com/questions/63350518/how-can-i-translate-seccertificateref-cert-object-to-openssls-x509-certificate
+    // https://stackoverflow.com/questions/8850524/seccertificateref-how-to-get-the-certificate-information
+    // https://stackoverflow.com/questions/15175917/free-string-returned-by-x509-name-oneline
+    NSData *certData = (__bridge NSData *) SecCertificateCopyData(cert);
+    const unsigned char *certDataBytes = (const unsigned char *)[certData bytes];
+    X509 *certX509 = d2i_X509(NULL, &certDataBytes, [certData length]);
+    char *buffer = calloc(8192, 1);
+    X509_NAME_oneline(X509_get_subject_name(certX509), buffer, 8192);
+    NSString *digest = [NSString stringWithUTF8String:buffer];
+    return digest;
+}
+#endif

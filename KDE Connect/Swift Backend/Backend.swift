@@ -112,7 +112,6 @@ public extension DeviceType {
     }
 
     static var current: DeviceType {
-#if os(macOS)
         var macDeviceType: DeviceType {
             "hw.model".withCString { hwModelCStr in
                 var size = 0
@@ -138,6 +137,7 @@ public extension DeviceType {
                 }
             }
         }
+#if os(macOS)
         return macDeviceType
 #else
         switch UIDevice.current.userInterfaceIdiom {

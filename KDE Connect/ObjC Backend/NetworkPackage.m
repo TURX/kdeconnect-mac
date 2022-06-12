@@ -131,7 +131,7 @@ __strong static NSString* _UUID;
 + (NSString*) getUUID
 {
     if (!_UUID) {
-        NSString* group = @"Q9HDHY97NW.org.kde.kdeconnect-mac";
+        NSString* group = @"3ZWV7C62H6.org.kde.kdeconnect-mac"; // KDE's Dev Team: 5433B4KXM8
         KeychainItemWrapper* wrapper = [[KeychainItemWrapper alloc] initWithIdentifier:@"org.kde.kdeconnect-mac" accessGroup:group]; // accessGroup:group
         _UUID = [wrapper objectForKey:(__bridge id)(kSecValueData)];
         if (!_UUID || [_UUID length] < 1) {
@@ -143,9 +143,8 @@ __strong static NSString* _UUID;
 #if !TARGET_OS_OSX
             _UUID = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
 #else
-#warning change to actual UUID for PRODUCTION
-            _UUID = @"11111111111";
-            // _UUID = [self getMacUUID];
+            // _UUID = @"11111111111"; // change to actual UUID for PRODUCTION
+            _UUID = [self getMacUUID];
 #endif
             _UUID = [_UUID stringByReplacingOccurrencesOfString:@"-" withString:@""];
             _UUID = [_UUID stringByReplacingOccurrencesOfString:@"_" withString:@""];
