@@ -24,8 +24,12 @@
 OSStatus generateSecIdentityForUUID(NSString *uuid)
 {
     // Force to remove the old identity, otherwise the new identity cannot be stored
+#if !TARGET_OS_OSX
     NSDictionary *spec = @{(__bridge id)kSecClass: (id)kSecClassIdentity};
     SecItemDelete((__bridge CFDictionaryRef)spec);
+#else
+#warning TODO: remove old identity on macOS
+#endif
 
     // Generate a private key
     EVP_PKEY * pkey;
@@ -77,9 +81,15 @@ OSStatus generateSecIdentityForUUID(NSString *uuid)
 
     // Create p12 format data
     PKCS12 *p12 = NULL;
+#if !TARGET_OS_OSX
     p12 = PKCS12_create(/* password */ "", /* name */ "KDE Connect", pkey, x509,
                         /* ca */ NULL, /* nid_key */ 0, /* nid_cert */ 0,
                         /* iter */ 0, /* mac_iter */ PKCS12_DEFAULT_ITER, /* keytype */ 0);
+#else
+    p12 = PKCS12_create(/* password */ NULL, /* name */ "KDE Connect", pkey, x509,
+                        /* ca */ NULL, /* nid_key */ 0, /* nid_cert */ 0,
+                        /* iter */ 0, /* mac_iter */ PKCS12_DEFAULT_ITER, /* keytype */ 0);
+#endif
     if(!p12) {
         @throw [[NSException alloc] initWithName:@"Fail getP12File" reason:@"Error creating PKCS#12 structure" userInfo:nil];
     }
@@ -123,6 +133,9 @@ OSStatus generateSecIdentityForUUID(NSString *uuid)
             (id)kSecValueRef:   (__bridge id)identityApp,
             // Do not use the sec class when adding, adding an identity will add key, cert and the identity
             // (id)kSecClass:      (id)kSecClassIdentity,
+#if TARGET_OS_OSX
+            (id)kSecClass:      (id)kSecClassIdentity,
+#endif
             (id)kSecAttrLabel:  (id)uuid,
         };
         OSStatus status = SecItemAdd((__bridge CFDictionaryRef)addQuery, NULL);
