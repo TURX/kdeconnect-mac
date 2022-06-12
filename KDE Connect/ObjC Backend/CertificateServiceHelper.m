@@ -11,6 +11,7 @@
 #import <Security/SecTrust.h>
 #import <Security/CipherSuite.h>
 #import <Security/SecIdentity.h>
+#import <Security/SecCertificate.h>
 #import <CommonCrypto/CommonDigest.h>
 #import <CommonCrypto/CommonCryptor.h>
 
@@ -28,7 +29,7 @@ OSStatus generateSecIdentityForUUID(NSString *uuid)
     NSDictionary *spec = @{(__bridge id)kSecClass: (id)kSecClassIdentity};
     SecItemDelete((__bridge CFDictionaryRef)spec);
 #else
-#warning TODO: remove old identity on macOS
+    // Removal for macOS is called in CertificateService.swift before this function call
 #endif
 
     // Generate a private key
@@ -122,6 +123,7 @@ OSStatus generateSecIdentityForUUID(NSString *uuid)
     CFArrayRef items = CFArrayCreate(NULL, 0, 0, NULL);
     OSStatus securityError = SecPKCS12Import((CFDataRef) p12Data,
                                              (CFDictionaryRef)options, &items);
+#if !TARGET_OS_OSX
     SecIdentityRef identityApp;
     if (securityError == noErr && CFArrayGetCount(items) > 0) {
         CFDictionaryRef identityDict = CFArrayGetValueAtIndex(items, 0);
@@ -133,9 +135,7 @@ OSStatus generateSecIdentityForUUID(NSString *uuid)
             (id)kSecValueRef:   (__bridge id)identityApp,
             // Do not use the sec class when adding, adding an identity will add key, cert and the identity
             // (id)kSecClass:      (id)kSecClassIdentity,
-#if TARGET_OS_OSX
-            (id)kSecClass:      (id)kSecClassIdentity,
-#endif
+
             (id)kSecAttrLabel:  (id)uuid,
         };
         OSStatus status = SecItemAdd((__bridge CFDictionaryRef)addQuery, NULL);
@@ -147,9 +147,27 @@ OSStatus generateSecIdentityForUUID(NSString *uuid)
         // Release finished CF Objects
         CFRelease(identityDict);
     }
-
+#endif
     // Delete the temp file
     [[NSFileManager defaultManager] removeItemAtPath:p12FilePath error:nil];
-
+#if !TARGET_OS_OSX
     return noErr;
+#else
+    return securityError;
+#endif
 }
+
+#if TARGET_OS_OSX
+NSString* extractSecCertificateDigest(SecCertificateRef cert) {
+    // https://stackoverflow.com/questions/63350518/how-can-i-translate-seccertificateref-cert-object-to-openssls-x509-certificate
+    // https://stackoverflow.com/questions/8850524/seccertificateref-how-to-get-the-certificate-information
+    // https://stackoverflow.com/questions/15175917/free-string-returned-by-x509-name-oneline
+    NSData *certData = (__bridge NSData *) SecCertificateCopyData(cert);
+    const unsigned char *certDataBytes = (const unsigned char *)[certData bytes];
+    X509 *certX509 = d2i_X509(NULL, &certDataBytes, [certData length]);
+    char *buffer = calloc(8192, 1);
+    X509_NAME_oneline(X509_get_subject_name(certX509), buffer, 8192);
+    NSString *digest = [NSString stringWithUTF8String:buffer];
+    return digest;
+}
+#endif
