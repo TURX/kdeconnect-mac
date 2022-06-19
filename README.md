@@ -1,66 +1,68 @@
-# The Official Repository of KDE Connect iOS
+# Repository of KDE Connect macOS
 
-**TL;DR: Get the public testing version of KDE Connect iOS by opening [this TestFlight link](https://testflight.apple.com/join/vxCluwBF) on an iOS >= 14 device!**
-
----
-
-This project is the iOS version of the group of applications called KDE Connect, which uses the LAN network to integrate devices together. For information on KDE Connect, check out:
+This project is the macOS version of the group of applications called KDE Connect, which uses the LAN network to integrate devices together. For information on KDE Connect, check out:
 
 - [The KDE Community Wiki](https://community.kde.org/KDEConnect)
 - [The KDE UserBase Wiki](https://userbase.kde.org/KDEConnect)
 
+This project is based on iOS codebase ([kdeconnect-ios d24e5ca5ebb1ae446de8eeab5f2d619e46fbd996](https://invent.kde.org/network/kdeconnect-ios/-/tree/d24e5ca5ebb1ae446de8eeab5f2d619e46fbd996)). Compatibility with iOS is preserved at the maximum effort.
+
 If you would like to talk to the KDE Connect developers & contributors (for questions or if you would like to contribute!), please join the [KDE Connect development Telegram channel](https://t.me/joinchat/AOS6gA37orb2dZCLhqbZjg).
 
-## Known Behavior and Problems
+### Features
 
-- iOS is very much designed around foreground interactions. Therefore, background “daemon-style” applications don’t really exist under conventional means, so the behavior where **KDE Connect iOS is unresponsive in the background is more or less intended**. There are technically some special categories and "hacky" methods to try to get it to run in the background, but in general, there is no intended/by-design method of keeping a "daemon-style" app running forever in the background. For more information, see [this post on the Apple Dev Forums](https://developers.apple.com/forums/thread/685525)
-- Notification syncing doesn't work because iOS applications can't access notifications of other apps
+![Demo Screenshot](demo.jpg)
 
-## Bug Reporting
-
-Please feel free to give feedback about/report bugs in the TestFlight version through:
-
-- System Settings app: you can report general information such as the number of app launches and crashes by enabling Settings > Privacy > Analytics & Improvements > Share iPhone Analytics > Share with App Developers
-- TestFlight's integrated screenshot feedback system: upon taking a screenshot of the app, tap "export" to see an option to send it as feedback to the developer (us)
-- TestFlight's integrated crash feedback system: upon app crashing, an alert will appear asking you if you would like to send the crash data along as feedback
-- [KDE Bugzilla](https://bugs.kde.org/enter_bug.cgi?product=kdeconnect&component=ios-application)
-
-### Data Disclosure Notice
-
-- If you don't send ANY feedback AND have "Share with App Developers" disabled, the ONLY information that the KDE developers can access about you is the date that you've installed the TestFlight app.
-- Enabling "Share with App Developers" discloses general information such as the number of app launches and crashes with the KDE Connect developers.
-- Sending feedback through TestFlight's integrated screenshot feedback system OR TestFlight's integrated crash feedback system will disclose:
-  - User email (if chosen to disclose)
-  - Device model
-  - iOS version
-  - Battery level
-  - Cellular carrier (if applicable)
-  - Time zone
-  - Architecture
-  - Connection type (Wifi, etc.)
-  - Free space on disk and total disk space available
-  - Screen resolution
-  - (For Crash feedback) stack trace leading to crash
-- Sending feedback through [KDE Bugzilla](https://bugs.kde.org/enter_bug.cgi?product=kdeconnect&component=ios-application) lets you manually disclose as much or as little information as you would like, but all information will have to be investigated manually.
+- Device List, Discovery, and Pairing
+- Ping
+- Battery Status (send only, does not always work)
+- Clipboard: Push & Receive Text
+- Share: Send and Receive File
+- Settings
 
 ## Contributing
 
-We keep track of tasks for KDE Connect iOS using [Phabricator](https://phabricator.kde.org/project/board/159/) and accept changes through KDE Invent GitLab [merge requests](https://invent.kde.org/network/kdeconnect-ios/-/merge_requests).
+Contribution including bugs, feature requests, and merge requests are highly welcomed. To get started, you might find the following information helpful.
 
-Many tasks only include a high level description and could be easily misinterpreted, so we'd recommend first starting a conversation in the task you are interested in implementing with your high level plan before diving into coding. Especially since KDE Connect iOS 2021 makes heavy use of both Swift and Objective-C and needs to support multiple iOS versions, it can be a bit confusing at first, so feel free to ask the developers some questions!
+We keep track of tasks for KDE Connect macOS using [Phabricator](https://phabricator.kde.org/project/board/159/) and the following [Tasks](#tasks) section, and accept changes through KDE Invent GitLab [merge requests](https://invent.kde.org/ruixuantu/kdeconnect-mac/-/merge_requests).
 
-### Extending to Additional Platforms
+### Bug Reporting
 
-- [ ] [Expand to a watchOS](https://community.kde.org/SoK/Ideas/2022#Investigate_Feasibility_of_KDE_Connect_for_watchOS) companion/standalone app?
-- [ ] [Expand to macOS](https://community.kde.org/GSoC/2022/Ideas#Project:_Porting_the_KDE_Connect_iOS_app_to_macOS) with catalyst/native SwiftUI?
+Please feel free to give feedback about/report bugs in the TestFlight version through:
 
-## History of KDE Connect iOS
+- **System Preferences app:** you can report general information such as the number of app launches and crashes by enabling System Preferences > Security & Privacy > Analytics & Improvements > Share with App Developers option
+- **TestFlight's feedback:** click "Send Beta Feedback" button to send a feedback email to us
+- **TestFlight's integrated crash feedback system:** upon app crashing, an alert will appear asking you if you would like to send the crash data along as feedback
+- **[KDE Bugzilla](https://bugs.kde.org/enter_bug.cgi?product=kdeconnect&component=ios-application):** As we currently do not have a macOS component on Bugzilla, you might use the iOS component instead.
 
-This project is a continuation of KDE Connect 2014, a codebase that stemmed from the Google Summer of Code 2014 program that remained largely untouched since 2014 until getting picked up again by [Inoki](https://invent.kde.org/wxiao) in 2019, where some tweaks were added to it to support TLS.
+### macOS
 
-KDE Connect 2021 was started as a project for Google Summer of Code 2021 by student Lucas Wang. As of mid-August 2021, the app compiles and is able to perform all of the functionalities currently implemented (though there are likely some bugs to be found). Currently, the app is not yet ready for Release distribution as it lacks certain functionalities compared to the other KDE Connect versions that either need to be implemented or are likely unviable to implement due to iOS restrictions.
+To compile or run this project, a latest Xcode with an Apple ID (Apple Developer Program enrollment is not necessary) is required. As Xcode could be installed only on macOS, any interested developer should have a latest macOS environment.
 
-If you would like to check out some other posts about KDE Connect iOS, please see:
+The best and most stable way is to purchase an Apple device with latest macOS supported. If the interested developer has insufficiency in funds, there are several alternative options:
 
-- [Lucas's blog](https://students.washington.edu/zxlwang/kde_list) contains many articles covering technical overviews of this project as well as its origin and plans for the future
-- [Lucas's Google Summer of Code Status Report](https://community.kde.org/GSoC/2021/StatusReports/LucasWang) is another place to view a report of this project
+- **Virtual Machine:** A convenient but not performance-optimized way, and there are many tutorials online.
+- **Hackintosh:** The developer could try to run macOS with amd64 arch on their own PCs. See [OpenCore](https://dortania.github.io/OpenCore-Install-Guide/).
+- **Public Devices:** The developer might visit nearby universities or public libraries to seek the access for an Apple device.
+
+### Frameworks
+
+We are using Swift and SwiftUI for frontend, plus Swift and Objective-C for backend. Since KDE Connect macOS makes heavy use of both Swift and Objective-C and needs to keep compatibility with iOS, it can be a bit confusing at first, so feel free to ask the developers some questions.
+
+### Tasks
+
+Many tasks only include a high level description and could be easily misinterpreted, so we would recommend first starting a conversation in the task you are interested in implementing with your high level plan before diving into coding.
+
+- **[DevicesView](https://invent.kde.org/ruixuantu/kdeconnect-mac/-/blob/master/KDE%20Connect/Views/Devices/DevicesView.swift) Layout**: We are currently using adaptive LazyVGrid. It would be better to implement an [AirDrop](https://support.apple.com/en-us/HT203106)-like window, i.e., to layout the items along the center of an arc path, and use the grid layout as a fallback when there are too many devices.
+- **[PeerSettingsView](https://invent.kde.org/ruixuantu/kdeconnect-mac/-/blob/master/KDE%20Connect/Views/Settings/PeerSettingsView.swift) Editable List**: The editable list should be reimplemented, as the current list does not support night mode and does not look or behave (e.g., Command+A not supported) like the editable list in System Preferences (e.g., WiFi).
+- **[App](https://invent.kde.org/ruixuantu/kdeconnect-mac/-/blob/master/KDE%20Connect/Views/Main%20Window/App.swift) Singleton:** More than one MainView or AskNotificationView for this app should not be allowed to avoid conflicts. If we would like to let user close MainView window and keep KDE Connect macOS running in the background, we might also move backend services to App from MainView.
+- **[AppDelegate](https://invent.kde.org/ruixuantu/kdeconnect-mac/-/blob/master/KDE%20Connect/Swift%20Backend/Mac/AppDelegate.swift) Menu**: We would like to remove non-necessary application menus set by the system (e.g., File, Edit, View), but we currently manually remove every time when the window updates, which might be replaced by a better approach.
+- **[App](https://invent.kde.org/ruixuantu/kdeconnect-mac/-/blob/master/KDE%20Connect/Views/Main%20Window/App.swift) Notification Permission:** Like the previous task, to detect changes, we currently manually check every time when the window updates.
+- **Battery:** We still need to show battery status received from other devices, and the battery status send sometimes does not work, albeit we manually send at window updates.
+- **[DeviceItemView](https://invent.kde.org/ruixuantu/kdeconnect-mac/-/blob/master/KDE%20Connect/Views/Devices/DeviceItemView.swift) Secondary Click:** Show unpair only but not actions of plugins if the device is paired but not connected.
+- **Integration:** The macOS codebase will be shared with [KDE Connect iOS](https://invent.kde.org/network/kdeconnect-ios/), either by integrating the macOS Views into iOS project, or extracting the backend and plugins from seperate iOS and macOS repositories to a public repository, and rebase will be applied.
+- **More Plugins Supported by iOS:** Find My Device, Presenter Control Sender, Mouse Control Sender, Run Command Sender.
+- **More Features Will Also Be Supported by iOS:** Keyboard Control Sender, Trusted Networks, i18n & l10n.
+- **Plugins Not Supported by iOS:** Mouse Control Receiver, Keyboard Control Receiver, Presenter Control Receiver, Run Command Receiver.
+- **Multi-device Experience Extension for Remote Input**: Requires completion of Remote Control Receiver.
+- **More:** New feature requests are welcomed.
