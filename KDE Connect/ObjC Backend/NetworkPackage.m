@@ -131,8 +131,8 @@ __strong static NSString* _UUID;
 + (NSString*) getUUID
 {
     if (!_UUID) {
-        NSString* group = @"3ZWV7C62H6.org.kde.kdeconnect-mac"; // KDE's Dev Team: 5433B4KXM8
-        KeychainItemWrapper* wrapper = [[KeychainItemWrapper alloc] initWithIdentifier:@"org.kde.kdeconnect-mac" accessGroup:group]; // accessGroup:group
+        NSString* group = @"5433B4KXM8.org.kde.kdeconnect"; // KDE's Dev Team: 5433B4KXM8
+        KeychainItemWrapper* wrapper = [[KeychainItemWrapper alloc] initWithIdentifier:@"org.kde.kdeconnect" accessGroup:group]; // accessGroup:group
         _UUID = [wrapper objectForKey:(__bridge id)(kSecValueData)];
         if (!_UUID || [_UUID length] < 1) {
             // FIXME: identifierForVendor might be nil

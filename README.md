@@ -9,6 +9,12 @@ This project is based on iOS codebase ([kdeconnect-ios d24e5ca5ebb1ae446de8eeab5
 
 If you would like to talk to the KDE Connect developers & contributors (for questions or if you would like to contribute!), please join the [KDE Connect development Telegram channel](https://t.me/joinchat/AOS6gA37orb2dZCLhqbZjg).
 
+### Beta Testing
+
+You can get the public testing version of KDE Connect macOS by opening [this TestFlight link](https://testflight.apple.com/join/vxCluwBF).
+
+This version supports running on Macs with Apple Silicon and Intel Chip.
+
 ### Features
 
 ![Demo Screenshot](demo.jpg)
@@ -33,7 +39,7 @@ Please feel free to give feedback about/report bugs in the TestFlight version th
 - **System Preferences app:** you can report general information such as the number of app launches and crashes by enabling System Preferences > Security & Privacy > Analytics & Improvements > Share with App Developers option
 - **TestFlight's feedback:** click "Send Beta Feedback" button to send a feedback email to us
 - **TestFlight's integrated crash feedback system:** upon app crashing, an alert will appear asking you if you would like to send the crash data along as feedback
-- **[KDE Bugzilla](https://bugs.kde.org/enter_bug.cgi?product=kdeconnect&component=ios-application):** As we currently do not have a macOS component on Bugzilla, you might use the iOS component instead.
+- **[KDE Bugzilla](https://bugs.kde.org/enter_bug.cgi?product=kdeconnect&component=macos-application):** you may manually disclose as much or as little information as you would like, but all information will have to be investigated manually
 
 ### macOS
 
