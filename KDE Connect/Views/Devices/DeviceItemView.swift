@@ -23,6 +23,16 @@ struct DeviceItemView: View {
         self.backgroundColor = backgroundColor
     }
     
+    func isSharePluginAvailable() -> Bool {
+        if let pluginsEnableStatus = backgroundService.devices[deviceId]?.pluginsEnableStatus {
+            if pluginsEnableStatus[.share] != nil {
+                return (backgroundService.devices[deviceId]?.isPaired() ?? false) && (backgroundService.devices[deviceId]?.isReachable() ?? false)
+            }
+            return false
+        }
+        return false
+    }
+    
     @State private var showingPhotosPicker: Bool = false
     @State private var showingFilePicker: Bool = false
     @State var chosenFileURLs: [URL] = []
@@ -49,29 +59,51 @@ struct DeviceItemView: View {
                     .fill(parent?.clickedDeviceId == self.deviceId ? .accentColor : Color.blue.opacity(0)))
         }.onTapGesture {
             parent?.clickedDeviceId = self.deviceId
+        }.onDrop(of: [.fileURL], isTargeted: nil) { providers in
+            // Ref: https://stackoverflow.com/questions/60831260/swiftui-drag-and-drop-files
+            if isSharePluginAvailable() {
+                var droppedFileURLs: [URL] = []
+                providers.forEach { provider in
+                    provider.loadDataRepresentation(forTypeIdentifier: "public.file-url", completionHandler: { (data, error) in
+                        if let data = data, let path = NSString(data: data, encoding: 4), let url = URL(string: path as String) {
+                            droppedFileURLs.append(url)
+                            print("File drppped: ", url)
+                        }
+                    })
+                }
+                while droppedFileURLs.count != providers.count {
+                    continue // block thread until all providers are proceeded
+                }
+                (backgroundService._devices[self.deviceId]!._plugins[.share] as! Share).prepAndInitFileSend(fileURLs: droppedFileURLs)
+                return true
+            } else {
+                return false
+            }
         }.contextMenu {
             if parent?.clickedDeviceId == self.deviceId {
                 if backgroundService.devices[self.deviceId]?.isPaired() ?? false {
                     Button("Unpair") {
                         backgroundService.unpairDevice(self.deviceId)
                     }
-                    if let pluginsEnableStatus = backgroundService.devices[self.deviceId]?.pluginsEnableStatus, let pluginsList = backgroundService.devices[self.deviceId]?.plugins {
-                        if (pluginsEnableStatus[.ping] != nil) {
-                            Button("Ping") {
-                                (pluginsList[.ping] as! Ping).sendPing()
+                    if backgroundService.devices[self.deviceId]?.isReachable() ?? false {
+                            if let pluginsEnableStatus = backgroundService.devices[self.deviceId]?.pluginsEnableStatus, let pluginsList = backgroundService.devices[self.deviceId]?.plugins {
+                            if (pluginsEnableStatus[.ping] != nil) {
+                                Button("Ping") {
+                                    (pluginsList[.ping] as! Ping).sendPing()
+                                }
                             }
-                        }
-                        if (pluginsEnableStatus[.clipboard] != nil) {
-                            Button("Push Local Clipboard") {
-                                (pluginsList[.clipboard] as! Clipboard).sendClipboardContentOut()
+                            if (pluginsEnableStatus[.clipboard] != nil) {
+                                Button("Push Local Clipboard") {
+                                    (pluginsList[.clipboard] as! Clipboard).sendClipboardContentOut()
+                                }
                             }
-                        }
-                        if (pluginsEnableStatus[.share] != nil) {
-                            Button("Send Photos and Videos") {
-                                showingPhotosPicker = true
-                            }
-                            Button("Send Files") {
-                                showingFilePicker = true
+                            if (pluginsEnableStatus[.share] != nil) {
+                                Button("Send Photos and Videos") {
+                                    showingPhotosPicker = true
+                                }
+                                Button("Send Files") {
+                                    showingFilePicker = true
+                                }
                             }
                         }
                     }

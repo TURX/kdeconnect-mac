@@ -57,7 +57,7 @@ We are using Swift and SwiftUI for frontend, plus Swift and Objective-C for back
 
 ### Tasks
 
-Many tasks only include a high level description and could be easily misinterpreted, so we would recommend first starting a conversation in the task you are interested in implementing with your high level plan before diving into coding.
+Many tasks only include a high-level description and could be easily misinterpreted, so we would recommend first starting a conversation about the task you are interested in implementing with your high-level plan before diving into coding.
 
 - **[DevicesView](https://invent.kde.org/ruixuantu/kdeconnect-mac/-/blob/master/KDE%20Connect/Views/Devices/DevicesView.swift) Layout**: We are currently using adaptive LazyVGrid. It would be better to implement an [AirDrop](https://support.apple.com/en-us/HT203106)-like window, i.e., to layout the items along the center of an arc path, and use the grid layout as a fallback when there are too many devices.
 - **[PeerSettingsView](https://invent.kde.org/ruixuantu/kdeconnect-mac/-/blob/master/KDE%20Connect/Views/Settings/PeerSettingsView.swift) Editable List**: The editable list should be reimplemented, as the current list does not support night mode and does not look or behave (e.g., Command+A not supported) like the editable list in System Preferences (e.g., WiFi).
@@ -65,8 +65,7 @@ Many tasks only include a high level description and could be easily misinterpre
 - **[AppDelegate](https://invent.kde.org/ruixuantu/kdeconnect-mac/-/blob/master/KDE%20Connect/Swift%20Backend/Mac/AppDelegate.swift) Menu**: We would like to remove non-necessary application menus set by the system (e.g., File, Edit, View), but we currently manually remove every time when the window updates, which might be replaced by a better approach.
 - **[App](https://invent.kde.org/ruixuantu/kdeconnect-mac/-/blob/master/KDE%20Connect/Views/Main%20Window/App.swift) Notification Permission:** Like the previous task, to detect changes, we currently manually check every time when the window updates.
 - **Battery:** We still need to show battery status received from other devices, and the battery status send sometimes does not work, albeit we manually send at window updates.
-- **[DeviceItemView](https://invent.kde.org/ruixuantu/kdeconnect-mac/-/blob/master/KDE%20Connect/Views/Devices/DeviceItemView.swift) Secondary Click:** Show unpair only but not actions of plugins if the device is paired but not connected.
-- **Integration:** The macOS codebase will be shared with [KDE Connect iOS](https://invent.kde.org/network/kdeconnect-ios/), either by integrating the macOS Views into iOS project, or extracting the backend and plugins from seperate iOS and macOS repositories to a public repository, and rebase will be applied.
+- **Integration:** The macOS codebase will be shared with [KDE Connect iOS](https://invent.kde.org/network/kdeconnect-ios/), either by integrating the macOS Views into iOS project, or extracting the backend and plugins from separate iOS and macOS repositories to a public repository, and rebase will be applied.
 - **More Plugins Supported by iOS:** Find My Device, Presenter Control Sender, Mouse Control Sender, Run Command Sender.
 - **More Features Will Also Be Supported by iOS:** Keyboard Control Sender, Trusted Networks, i18n & l10n.
 - **Plugins Not Supported by iOS:** Mouse Control Receiver, Keyboard Control Receiver, Presenter Control Receiver, Run Command Receiver.
