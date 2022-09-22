@@ -64,6 +64,16 @@ struct KDE_Connect_App: App {
                 } else {
                     Label("Refresh Discovery", systemImage: "")
                 }
+                Button("Show Received Files in Finder") {
+                    let fileManager = FileManager.default
+                    do {
+                        // see Share plugin
+                        let documentDirectory = try fileManager.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
+                        NSWorkspace.shared.open(documentDirectory)
+                    } catch {
+                        print("Error showing received files in Finder \(error)")
+                    }
+                }
             }
         }
         .windowStyle(HiddenTitleBarWindowStyle())

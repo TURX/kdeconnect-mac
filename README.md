@@ -11,7 +11,7 @@ If you would like to talk to the KDE Connect developers & contributors (for ques
 
 ### Beta Testing
 
-You can get the public testing version of KDE Connect macOS by opening [this TestFlight link](https://testflight.apple.com/join/0JPQYJRs).
+You can get the public testing version of KDE Connect macOS by opening [this TestFlight link](https://testflight.apple.com/join/vxCluwBF) (same link as KDE Connect iOS).
 
 This version supports running on Macs with Apple Silicon and Intel Chip.
 
