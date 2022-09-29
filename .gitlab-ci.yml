@@ -15,12 +15,10 @@ stages:
 build_project:
   stage: build
   script:
-    # change working directory to the one containing Xcode project
-    - cd 'KDE Connect'
     # clean any previous build data
     - xcodebuild clean -project 'KDE Connect.xcodeproj' -scheme 'KDE Connect'
     # build the project and run the tests
-    - xcodebuild test -project 'KDE Connect.xcodeproj' -scheme 'KDE Connect' -destination 'platform=iOS Simulator,name=iPhone 8,OS=15.2'
+    - xcodebuild test -project 'KDE Connect.xcodeproj' -scheme 'KDE Connect' -destination 'platform=macOS,arch=x86_64'
   tags:
     - macOS
 
