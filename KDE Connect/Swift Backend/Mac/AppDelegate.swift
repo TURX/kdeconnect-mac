@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 import UserNotifications
 
-class AppDelegate: NSObject, NSApplicationDelegate, UNUserNotificationCenterDelegate {
+class AppDelegate: NSObject, NSApplicationDelegate {
     private var menu: NSMenu? = nil
     private var safe: Bool = true
     private var needMenuUpdate: Bool = false {
@@ -30,8 +30,27 @@ class AppDelegate: NSObject, NSApplicationDelegate, UNUserNotificationCenterDele
             self.needMenuUpdate = true
         }
     }
+
+    func applicationWillUpdate(_ notification: Notification) {
+        if let menu = NSApplication.shared.mainMenu {
+            self.menu = menu
+            self.requestMenuUpdate()
+        }
+    }
     
-    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+    func applicationWillFinishLaunching(_ notification: Notification) {
+        UNUserNotificationCenter.current().delegate = self
+    }
+    
+    func applicationDidFinishLaunching(_ notification: Notification) {
+        UNUserNotificationCenter.current().delegate = self
+    }
+}
+
+extension AppDelegate: UNUserNotificationCenterDelegate {
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                didReceive response: UNNotificationResponse,
+                                withCompletionHandler completionHandler: @escaping () -> Void) {
         let userInfo = response.notification.request.content.userInfo
         let deviceId = userInfo["DEVICE_ID"] as? String ?? nil
         
@@ -52,21 +71,27 @@ class AppDelegate: NSObject, NSApplicationDelegate, UNUserNotificationCenterDele
         completionHandler()
     }
     
-    func applicationDidBecomeActive(_ notification: Notification) {
-        if let menu = NSApplication.shared.mainMenu {
-            self.menu = menu
-            self.requestMenuUpdate()
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+             willPresent notification: UNNotification,
+             withCompletionHandler completionHandler:
+                @escaping (UNNotificationPresentationOptions) -> Void) {
+        let userInfo = notification.request.content.userInfo
+        let deviceId = userInfo["DEVICE_ID"] as? String ?? nil
+        
+        switch notification.request.identifier {
+        case "PAIR_ACCEPT_ACTION":
+            backgroundService.pairDevice(deviceId)
+            break
+        case "PAIR_DECLINE_ACTION":
+            backgroundService.unpairDevice(deviceId)
+            break
+        case "FMD_FOUND_ACTION":
+            MainView.updateFindMyPhoneTimer(isRunning: false)
+            break
+        default:
+            break
         }
-    }
-    
-    func applicationWillUpdate(_ notification: Notification) {
-        if let menu = NSApplication.shared.mainMenu {
-            self.menu = menu
-            self.requestMenuUpdate()
-        }
-    }
-    
-    func applicationWillFinishLaunching(_ notification: Notification) {
-        UNUserNotificationCenter.current().delegate = self
+        
+        completionHandler([.list, .banner, .sound, .badge])
     }
 }

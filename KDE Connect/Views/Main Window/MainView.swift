@@ -26,7 +26,7 @@ struct MainView: View {
             Divider()
             HStack {
                 Spacer()
-                DeviceItemView(deviceId: "0", parent: nil, deviceName: $selfData.deviceName, emoji: deviceView.getEmojiFromDeviceType(deviceType: DeviceType.current), backgroundColor: .gray)
+                DeviceItemView(deviceId: "0", parent: nil, deviceName: $selfData.deviceName, emoji: deviceView.getEmojiFromDeviceType(deviceType: DeviceType.current), connState: .local)
                     .padding(.all)
                 Spacer()
             }
@@ -102,7 +102,7 @@ struct MainView: View {
     }
     
     func showFindMyPhoneAlert() {
-        notificationManager.post(title: "Find My Device Mode", body: "Find My Device initiated from a remote device", categoryIdentifier: "FIND_MY_DEVICE", interruptionLevel: .critical)
+        notificationManager.post(title: "Find My Mac Mode", body: "Find My Mac initiated from a remote device", categoryIdentifier: "FIND_MY_DEVICE", interruptionLevel: .critical)
         // TODO: notification does not stay
     }
     

@@ -30,23 +30,7 @@ import AppKit
     @Published
     @objc var remoteThresholdEvent: Int = 0
 #if os(macOS)
-    var batteryLevel: Int = 0
-    var acPowered: Bool = false
-//    static var shared: Battery? = nil
-//    var internalBatteryLevelVal: Int = 0
-//    var internalBatteryLevel: Binding<Int> {
-//        Binding<Int>(
-//            get: {
-//                self.internalBatteryLevelVal
-//            },
-//            set: { val in
-//                if (val != self.internalBatteryLevelVal) {
-//                    self.internalBatteryLevelVal = val
-//                    self.batteryUpdate()
-//                }
-//            }
-//        )
-//    }
+    var batteryObserver: BatteryObserver? = nil
 #endif
     
     @objc init(controlDevice: Device) {
@@ -55,7 +39,6 @@ import AppKit
         //self.sendBatteryStatusRequest() // no need here, asking in Device() when first link is added
         self.startBatteryMonitoring()
         self.sendBatteryStatusOut()
-        //Battery.shared = self
     }
     
     @objc func startBatteryMonitoring() {
@@ -67,7 +50,7 @@ import AppKit
         NotificationCenter.default.addObserver(self, selector: #selector(self.batteryStateDidChange(notification:)), name: UIDevice.batteryStateDidChangeNotification, object: UIDevice.current)
         NotificationCenter.default.addObserver(self, selector: #selector(self.batteryLevelDidChange(notification:)), name: UIDevice.batteryLevelDidChangeNotification, object: UIDevice.current)
 #else
-        // TODO: monitor macOS battery
+        self.batteryObserver = BatteryObserver(batteryInfoDidChange)
 #endif
     }
     
@@ -115,11 +98,6 @@ import AppKit
             let internalBattery = internalFinder.getInternalBattery()
             let batteryLevel = Int(internalBattery?.charge ?? 0)
             let acPowered: Bool = internalBattery?.acPowered ?? false
-            if batteryLevel == self.batteryLevel && acPowered == self.acPowered {
-                return
-            }
-            self.batteryLevel = batteryLevel
-            self.acPowered = acPowered
             let batteryThresholdEvent: Int = (batteryLevel < 10) ? 1 : 0
             np.setInteger(Int(batteryLevel), forKey: "currentCharge")
             np.setBool((internalBattery?.acPowered ?? false), forKey: "isCharging")
@@ -166,7 +144,11 @@ import AppKit
         } else if remoteChargeLevel < 40 {
             return .yellow
         } else {
+#if !os(macOS)
             return .primary
+#else
+            return .blue
+#endif
         }
     }
     
@@ -183,6 +165,10 @@ import AppKit
     @objc func batteryLevelDidChange(notification: Notification) {
         sendBatteryStatusOut()
     }
+#else
+    func batteryInfoDidChange(info: BatteryInfo) {
+        sendBatteryStatusOut()
+    }
 #endif
 }
 
@@ -190,9 +176,7 @@ import AppKit
 func startBatteryMonitoringAllDevices() {
     for device in backgroundService._devices.values {
         if (device.isPaired() && (device._pluginsEnableStatus[.batteryRequest] != nil) && (device._pluginsEnableStatus[.batteryRequest] as! Bool)) {
-#if !os(macOS)
             (device._plugins[.batteryRequest] as! Battery).startBatteryMonitoring()
-#endif
         }
     }
 }

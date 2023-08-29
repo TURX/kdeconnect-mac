@@ -9,23 +9,35 @@ import SwiftUI
 import MediaPicker
 
 struct DeviceItemView: View {
-    var deviceId: String
-    var parent: DevicesView?
+    let deviceId: String
+    let parent: DevicesView?
     @Binding var deviceName: String
-    var emoji: String
-    var backgroundColor: Color
+    let emoji: String
+    let connState: DevicesView.ConnectionState
+    let backgroundColor: Color
+    @Environment(\.colorScheme) var colorScheme
     
-    init(deviceId: String, parent: DevicesView? = nil, deviceName: Binding<String>, emoji: String, backgroundColor: Color) {
+    init(deviceId: String, parent: DevicesView? = nil, deviceName: Binding<String>, emoji: String, connState: DevicesView.ConnectionState) {
         self.deviceId = deviceId
         self.parent = parent
         self._deviceName = deviceName
         self.emoji = emoji
-        self.backgroundColor = backgroundColor
+        switch (connState) {
+        case .connected:
+            self.backgroundColor = .green
+        case .saved:
+            self.backgroundColor = .gray
+        case .visible:
+            self.backgroundColor = .cyan
+        case .local:
+            self.backgroundColor = .cyan
+        }
+        self.connState = connState
     }
-    
-    func isSharePluginAvailable() -> Bool {
+
+    func isPluginAvailable(_ plugin: NetworkPackage.`Type`) -> Bool {
         if let pluginsEnableStatus = backgroundService.devices[deviceId]?.pluginsEnableStatus {
-            if pluginsEnableStatus[.share] != nil {
+            if pluginsEnableStatus[plugin] != nil {
                 return (backgroundService.devices[deviceId]?.isPaired() ?? false) && (backgroundService.devices[deviceId]?.isReachable() ?? false)
             }
             return false
@@ -42,26 +54,40 @@ struct DeviceItemView: View {
             ZStack {
                 Circle()
                     .fill(parent?.clickedDeviceId == self.deviceId ? Color.accentColor : self.backgroundColor)
-                    .zIndex(0)
-                HStack {
-                    Text(emoji)
-                        .font(.system(size: 32))
-                        .zIndex(1)
+                if self.connState == .connected && self.isPluginAvailable(.batteryRequest) {
+                    BatteryStatus(device: backgroundService._devices[self.deviceId]!) { battery in
+                        Circle()
+                            .trim(from: 0, to: CGFloat(battery.remoteChargeLevel) / 100)
+                            .rotation(.degrees(-90))
+                            .stroke(battery.statusColor, style: StrokeStyle(lineWidth: 3, lineCap: .round))
+                            .brightness(colorScheme == .light ? -0.1 : 0.1)
+                        Text(String(battery.remoteChargeLevel) + "%")
+                            .frame(maxWidth: 64, maxHeight: 64, alignment: .top)
+                            .padding(.top, 2)
+                            .font(.system(.footnote, design: .rounded).weight(.light))
+                            .foregroundColor(.black)
+                    }.onAppear {
+                        (backgroundService._devices[self.deviceId]!._plugins[.batteryRequest] as! Battery)
+                            .sendBatteryStatusOut()
+                    }
                 }
+                Text(emoji)
+                    .font(.system(size: 32))
+                    .shadow(radius: 1)
             }
             .frame(width: 64, height: 64)
             HStack {
                 Text(deviceName)
                     .multilineTextAlignment(.center)
-                    .foregroundColor(parent?.clickedDeviceId == self.deviceId ? .white : .primary)
+                    .foregroundColor(parent?.clickedDeviceId == self.deviceId ? .white : Color.primary)
                     .padding(.horizontal, 8)
             }.background(RoundedRectangle(cornerRadius: 8)
-                    .fill(parent?.clickedDeviceId == self.deviceId ? .accentColor : Color.blue.opacity(0)))
+                .fill(parent?.clickedDeviceId == self.deviceId ? .accentColor : Color.blue.opacity(0)))
         }.onTapGesture {
             parent?.clickedDeviceId = self.deviceId
         }.onDrop(of: [.fileURL], isTargeted: nil) { providers in
             // Ref: https://stackoverflow.com/questions/60831260/swiftui-drag-and-drop-files
-            if isSharePluginAvailable() {
+            if isPluginAvailable(.share) {
                 var droppedFileURLs: [URL] = []
                 providers.forEach { provider in
                     provider.loadDataRepresentation(forTypeIdentifier: "public.file-url", completionHandler: { (data, error) in
@@ -98,9 +124,10 @@ struct DeviceItemView: View {
                                 }
                             }
                             if (pluginsEnableStatus[.share] != nil) {
-                                Button("Send Photos and Videos") {
-                                    showingPhotosPicker = true
-                                }
+                                // TODO: fix media sharing
+//                                Button("Send Photos and Videos") {
+//                                    showingPhotosPicker = true
+//                                }
                                 Button("Send Files") {
                                     showingFilePicker = true
                                 }
@@ -134,6 +161,6 @@ struct DeviceItemView: View {
 
 struct DeviceIcon_Previews: PreviewProvider {
     static var previews: some View {
-        DeviceItemView(deviceId: "0", parent: nil, deviceName: .constant("TURX's MacBook Pro"), emoji: "\u{1F5A5}", backgroundColor: .gray)
+        DeviceItemView(deviceId: "0", parent: nil, deviceName: .constant("TURX's MacBook Pro"), emoji: "\u{1F5A5}", connState: .local)
     }
 }

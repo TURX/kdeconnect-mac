@@ -41,12 +41,10 @@ struct KDE_Connect_App: App {
                         requestNotification()
                         backgroundService.startDiscovery()
                         requestBatteryStatusAllDevices()
-                        broadcastBatteryStatusAllDevices()
                     }
                     .environmentObject(notificationManager)
                     .onReceive(NotificationCenter.default.publisher(for: NSApplication.willUpdateNotification)) { _ in
                         requestNotification()
-                        broadcastBatteryStatusAllDevices()
                     }
             } else {
                 AskNotificationView()

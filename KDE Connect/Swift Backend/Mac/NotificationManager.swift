@@ -12,13 +12,15 @@ class NotificationManager: ObservableObject {
     var categories: Set<UNNotificationCategory>
     
     init() {
-        let acceptAction = UNNotificationAction(identifier: "PAIR_ACCEPT_ACTION", title: "Accept")
-        let declineAction = UNNotificationAction(identifier: "PAIR_DECLINE_ACTION", title: "Decline")
-        let foundAction = UNNotificationAction(identifier: "FMD_FOUND_ACTION", title: "Found")
+        let acceptAction = UNNotificationAction(identifier: "PAIR_ACCEPT_ACTION", title: "Accept", options: [])
+        let declineAction = UNNotificationAction(identifier: "PAIR_DECLINE_ACTION", title: "Decline", options: [])
+        let foundAction = UNNotificationAction(identifier: "FMD_FOUND_ACTION", title: "Found", options: [])
         let normalCategory = UNNotificationCategory(identifier: "NORMAL", actions: [], intentIdentifiers: [])
         let pairRequestCategory = UNNotificationCategory(identifier: "PAIR_REQUEST", actions: [ acceptAction, declineAction ], intentIdentifiers: [], options: .customDismissAction)
         let findMyDeviceCategory = UNNotificationCategory(identifier: "FIND_MY_DEVICE", actions: [ foundAction ], intentIdentifiers: [], options: .customDismissAction)
         categories = [ normalCategory, pairRequestCategory, findMyDeviceCategory ]
+        let notificationCenter = UNUserNotificationCenter.current()
+        notificationCenter.setNotificationCategories(categories)
     }
     
     func pairRequestPost(title: String, body: String, deviceId: String) {
@@ -32,14 +34,12 @@ class NotificationManager: ObservableObject {
         content.userInfo = userInfo
         content.categoryIdentifier = categoryIdentifier
         
-        let dateComponents = DateComponents(calendar: Calendar.current)
-        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 0.1, repeats: false)
         
         let uuidString = UUID().uuidString
         let request = UNNotificationRequest(identifier: uuidString, content: content, trigger: trigger)
         
         let notificationCenter = UNUserNotificationCenter.current()
-        notificationCenter.setNotificationCategories(self.categories)
         notificationCenter.add(request)
     }
 }

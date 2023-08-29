@@ -24,9 +24,25 @@ struct DevicesView: View {
     @State public var clickedDeviceId: String
     @State private var counter: Int
     
-    init() {
+    enum GenMode {
+        case normal
+        case empty
+        case four
+        case hundred
+    }
+    let genMode: GenMode
+    
+    enum ConnectionState {
+        case connected
+        case saved
+        case visible
+        case local
+    }
+    
+    init(genMode: GenMode = .normal) {
         self.clickedDeviceId = "-1"
         self.counter = 0
+        self.genMode = genMode
     }
     
     func getEmojiFromDeviceType(deviceType: DeviceType) -> String {
@@ -48,34 +64,51 @@ struct DevicesView: View {
         }
     }
     
-    // no arg: actual data; int arg: preset data
-    func getDeviceIcons(_ genMode: Int = -1) -> [DeviceItemView] {
-        switch (genMode) {
-        case 0:
+    func getDeviceIcons() -> [DeviceItemView] {
+        switch (self.genMode) {
+        case .empty:
             return []
-        case 1:
+        case .four:
             return [
-                DeviceItemView(deviceId: "1", parent: self, deviceName: .constant("TURX's iPhone"), emoji: "\u{1F4F1}", backgroundColor: .gray),
-                DeviceItemView(deviceId: "2", parent: self, deviceName: .constant("WISC InfoLab iMac"), emoji: "\u{1F5A5}", backgroundColor: .green),
-                DeviceItemView(deviceId: "3", parent: self, deviceName: .constant("C"), emoji: "\u{1F5A5}", backgroundColor: .cyan),
-                DeviceItemView(deviceId: "4", parent: self, deviceName: .constant("D"), emoji: "\u{1F5A5}", backgroundColor: .gray)
+                DeviceItemView(deviceId: "1", parent: self, deviceName: .constant("TURX's iPhone"), emoji: "\u{1F4F1}", connState: .saved),
+                DeviceItemView(deviceId: "2", parent: self, deviceName: .constant("WISC InfoLab iMac"), emoji: "\u{1F5A5}", connState: .visible),
+                DeviceItemView(deviceId: "3", parent: self, deviceName: .constant("C"), emoji: "\u{1F5A5}", connState: .visible),
+                DeviceItemView(deviceId: "4", parent: self, deviceName: .constant("D"), emoji: "\u{1F5A5}", connState: .saved)
             ]
-        case 2:
+        case .hundred:
             var deviceIcons = Array<DeviceItemView>()
             for i in 1...100 {
-                deviceIcons.append(DeviceItemView(deviceId: String(i), parent: self, deviceName: .constant(String(i)), emoji: "\u{1F4F1}", backgroundColor: .gray))
+                deviceIcons.append(DeviceItemView(deviceId: String(i), parent: self, deviceName: .constant(String(i)), emoji: "\u{1F4F1}", connState: .saved))
             }
             return deviceIcons
-        default:
+        case .normal:
             var deviceIcons = Array<DeviceItemView>()
             for key in connectedDevicesIds {
-                deviceIcons.append(DeviceItemView(deviceId: key, parent: self, deviceName: .constant(viewModel.connectedDevices[key] ?? "Unknown device"), emoji: getEmojiFromDeviceType(deviceType: backgroundService._devices[key]?._type ?? .unknown), backgroundColor: .green))
+                deviceIcons.append(DeviceItemView(
+                    deviceId: key,
+                    parent: self,
+                    deviceName: .constant(viewModel.connectedDevices[key] ?? "Unknown device"),
+                    emoji: getEmojiFromDeviceType(deviceType: backgroundService._devices[key]?._type ?? .unknown),
+                    connState: .connected
+                ))
             }
             for key in savedDevicesIds {
-                deviceIcons.append(DeviceItemView(deviceId: key, parent: self, deviceName: .constant(viewModel.savedDevices[key] ?? "Unknown device"), emoji: getEmojiFromDeviceType(deviceType: backgroundService._devices[key]?._type ?? .unknown), backgroundColor: .gray))
+                deviceIcons.append(DeviceItemView(
+                    deviceId: key,
+                    parent: self,
+                    deviceName: .constant(viewModel.savedDevices[key] ?? "Unknown device"),
+                    emoji: getEmojiFromDeviceType(deviceType: backgroundService._devices[key]?._type ?? .unknown),
+                    connState: .saved
+                ))
             }
             for key in visibleDevicesIds {
-                deviceIcons.append(DeviceItemView(deviceId: key, parent: self, deviceName: .constant(viewModel.visibleDevices[key] ?? "Unknown device"), emoji: getEmojiFromDeviceType(deviceType: backgroundService._devices[key]?._type ?? .unknown), backgroundColor: .cyan))
+                deviceIcons.append(DeviceItemView(
+                    deviceId: key,
+                    parent: self,
+                    deviceName: .constant(viewModel.visibleDevices[key] ?? "Unknown device"),
+                    emoji: getEmojiFromDeviceType(deviceType: backgroundService._devices[key]?._type ?? .unknown),
+                    connState: .visible
+                ))
             }
             return deviceIcons
         }
@@ -102,15 +135,12 @@ struct DevicesView: View {
             .onTapGesture {
                 self.clickedDeviceId = "-1"
             }
-            .onAppear {
-                broadcastBatteryStatusAllDevices()
-            }
         }
     }
 }
 
 struct DevicesView_Previews: PreviewProvider {
     static var previews: some View {
-        DevicesView()
+        DevicesView(genMode: .four)
     }
 }

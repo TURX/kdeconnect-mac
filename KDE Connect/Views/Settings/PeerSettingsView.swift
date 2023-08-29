@@ -22,6 +22,7 @@ import SwiftUI
 
 struct PeerSettingsView: View {
     @Binding var directIPs: [String]
+    @Environment(\.colorScheme) var colorScheme
     @State var selectedIndex = -1
     @State var editingIndex = -1
     
@@ -51,8 +52,27 @@ struct PeerSettingsView: View {
                 }
                 Spacer()
             }
-            .background(self.selectedIndex == ind ? .blue : .white)
+            .background(self.selectedIndex == ind ? (self.colorScheme == .light ? .blue : .orange) : .white)
             .frame(alignment: .leading)
+        }
+    }
+    
+    var mainFrame: some View {
+        HStack {
+            if self.directIPs.count > 0 {
+                ScrollView(showsIndicators: true) {
+                    peerList
+                }.background(.white)
+                    .onTapGesture {
+                        self.selectedIndex = -1
+                        self.editingIndex = -1
+                    }
+            } else {
+                VStack {
+                    Rectangle()
+                        .fill(.white)
+                }
+            }
         }
     }
     
@@ -62,21 +82,11 @@ struct PeerSettingsView: View {
                 Text("Configure Devices by IP:")
                 Spacer()
             }
-            HStack {
-                if self.directIPs.count > 0 {
-                    ScrollView(showsIndicators: true) {
-                        peerList
-                    }.background(.white)
-                        .onTapGesture {
-                            self.selectedIndex = -1
-                            self.editingIndex = -1
-                        }
-                } else {
-                    VStack {
-                        Rectangle()
-                            .fill(.white)
-                    }
-                }
+            if colorScheme == .light {
+                mainFrame
+            }
+            else {
+                mainFrame.colorInvert()
             }
             HStack {
                 Button("+") {

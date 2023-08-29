@@ -21,14 +21,14 @@ This version supports running on Macs with Apple Silicon and Intel Chip.
 
 - Device List, Discovery, and Pairing
 - Ping
-- Battery Status (send only, does not always work)
+- Battery Status
 - Clipboard: Push & Receive Text
 - Share: Send and Receive File
 - Settings
 
 ## Contributing
 
-Contribution including bugs, feature requests, and merge requests are highly welcomed. To get started, you might find the following information helpful.
+Contributions including bugs, feature requests, and merge requests are highly welcomed. To get started, you might find the following information helpful.
 
 We keep track of tasks for KDE Connect macOS using [Phabricator](https://phabricator.kde.org/project/board/159/) and the following [Tasks](#tasks) section, and accept changes through KDE Invent GitLab [merge requests](https://invent.kde.org/ruixuantu/kdeconnect-mac/-/merge_requests).
 
@@ -43,13 +43,13 @@ Please feel free to give feedback about/report bugs in the TestFlight version th
 
 ### macOS
 
-To compile or run this project, a latest Xcode with an Apple ID (Apple Developer Program enrollment is not necessary) is required. As Xcode could be installed only on macOS, any interested developer should have a latest macOS environment.
+To compile or run this project, the latest Xcode with an Apple ID (Apple Developer Program enrollment is not necessary) is required. As Xcode can only be installed on macOS, any interested developer should have the latest macOS environment.
 
-The best and most stable way is to purchase an Apple device with latest macOS supported. If the interested developer has insufficiency in funds, there are several alternative options:
+The best and most stable way is to purchase an Apple device with the latest macOS supported. If the interested developer has an insufficiency of funds, there are several alternative options:
 
 - **Virtual Machine:** A convenient but not performance-optimized way, and there are many tutorials online.
 - **Hackintosh:** The developer could try to run macOS with amd64 arch on their own PCs. See [OpenCore](https://dortania.github.io/OpenCore-Install-Guide/).
-- **Public Devices:** The developer might visit nearby universities or public libraries to seek the access for an Apple device.
+- **Public Devices:** The developer might visit nearby universities or public libraries to seek access to an Apple device.
 
 ### Frameworks
 
@@ -60,11 +60,10 @@ We are using Swift and SwiftUI for frontend, plus Swift and Objective-C for back
 Many tasks only include a high-level description and could be easily misinterpreted, so we would recommend first starting a conversation about the task you are interested in implementing with your high-level plan before diving into coding.
 
 - **[DevicesView](https://invent.kde.org/ruixuantu/kdeconnect-mac/-/blob/master/KDE%20Connect/Views/Devices/DevicesView.swift) Layout**: We are currently using adaptive LazyVGrid. It would be better to implement an [AirDrop](https://support.apple.com/en-us/HT203106)-like window, i.e., to layout the items along the center of an arc path, and use the grid layout as a fallback when there are too many devices.
-- **[PeerSettingsView](https://invent.kde.org/ruixuantu/kdeconnect-mac/-/blob/master/KDE%20Connect/Views/Settings/PeerSettingsView.swift) Editable List**: The editable list should be reimplemented, as the current list does not support night mode and does not look or behave (e.g., Command+A not supported) like the editable list in System Preferences (e.g., WiFi).
+- **[PeerSettingsView](https://invent.kde.org/ruixuantu/kdeconnect-mac/-/blob/master/KDE%20Connect/Views/Settings/PeerSettingsView.swift) Editable List**: The editable list should be reimplemented, as the current list does not look or behave (e.g., Command+A not supported) like the editable list in System Preferences (e.g., WiFi).
 - **[App](https://invent.kde.org/ruixuantu/kdeconnect-mac/-/blob/master/KDE%20Connect/Views/Main%20Window/App.swift) Singleton:** More than one MainView or AskNotificationView for this app should not be allowed to avoid conflicts. If we would like to let user close MainView window and keep KDE Connect macOS running in the background, we might also move backend services to App from MainView.
 - **[AppDelegate](https://invent.kde.org/ruixuantu/kdeconnect-mac/-/blob/master/KDE%20Connect/Swift%20Backend/Mac/AppDelegate.swift) Menu**: We would like to remove non-necessary application menus set by the system (e.g., File, Edit, View), but we currently manually remove every time when the window updates, which might be replaced by a better approach.
 - **[App](https://invent.kde.org/ruixuantu/kdeconnect-mac/-/blob/master/KDE%20Connect/Views/Main%20Window/App.swift) Notification Permission:** Like the previous task, to detect changes, we currently manually check every time when the window updates.
-- **Battery:** We still need to show battery status received from other devices, and the battery status send sometimes does not work, albeit we manually send at window updates.
 - **Integration:** The macOS codebase will be shared with [KDE Connect iOS](https://invent.kde.org/network/kdeconnect-ios/), either by integrating the macOS Views into iOS project, or extracting the backend and plugins from separate iOS and macOS repositories to a public repository, and rebase will be applied.
 - **More Plugins Supported by iOS:** Find My Device, Presenter Control Sender, Mouse Control Sender, Run Command Sender.
 - **More Features Will Also Be Supported by iOS:** Keyboard Control Sender, Trusted Networks, i18n & l10n.
