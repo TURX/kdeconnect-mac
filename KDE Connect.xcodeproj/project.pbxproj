@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5E0022CF2AA1091900F2D96D /* HelpManual.md in Resources */ = {isa = PBXBuildFile; fileRef = 5E0022CE2AA106FC00F2D96D /* HelpManual.md */; };
 		5E04DB51282CD63200969009 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E04DB50282CD63200969009 /* App.swift */; };
 		5E04DB55282CD63200969009 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5E04DB54282CD63200969009 /* Assets.xcassets */; };
 		5E04DB58282CD63200969009 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5E04DB57282CD63200969009 /* Preview Assets.xcassets */; };
@@ -66,6 +67,8 @@
 		5E7DFA34282DF63800F5244E /* InternalBattery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7DFA33282DF63800F5244E /* InternalBattery.swift */; };
 		5E7DFA36282DF66900F5244E /* InternalBatteryFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7DFA35282DF66900F5244E /* InternalBatteryFinder.swift */; };
 		5E7DFA38282E15E300F5244E /* AskNotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7DFA37282E15E300F5244E /* AskNotificationView.swift */; };
+		5EA77F6A2A9FBC59007BD76E /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA77F692A9FBC59007BD76E /* HelpView.swift */; };
+		5EA77F6C2AA09C0F007BD76E /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA77F6B2AA09C0F007BD76E /* ErrorView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,6 +89,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5E0022CE2AA106FC00F2D96D /* HelpManual.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = HelpManual.md; sourceTree = "<group>"; };
 		5E04DB4D282CD63200969009 /* KDE Connect.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "KDE Connect.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E04DB50282CD63200969009 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		5E04DB54282CD63200969009 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -155,6 +159,9 @@
 		5E7DFA33282DF63800F5244E /* InternalBattery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternalBattery.swift; sourceTree = "<group>"; };
 		5E7DFA35282DF66900F5244E /* InternalBatteryFinder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternalBatteryFinder.swift; sourceTree = "<group>"; };
 		5E7DFA37282E15E300F5244E /* AskNotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AskNotificationView.swift; sourceTree = "<group>"; };
+		5EA77F692A9FBC59007BD76E /* HelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpView.swift; sourceTree = "<group>"; };
+		5EA77F6B2AA09C0F007BD76E /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
+		5ED731632AA0E1E500390F11 /* KDE-Connect-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "KDE-Connect-Info.plist"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -209,6 +216,7 @@
 		5E04DB4F282CD63200969009 /* KDE Connect */ = {
 			isa = PBXGroup;
 			children = (
+				5ED731632AA0E1E500390F11 /* KDE-Connect-Info.plist */,
 				5E7DFA23282DF24800F5244E /* Views */,
 				5E7570E1282D213C0095F517 /* Plugins and Plugin Views */,
 				5E256975282D0C3300857925 /* ObjC Backend */,
@@ -320,6 +328,9 @@
 				5E04DB7E282CD6C600969009 /* MainView.swift */,
 				5E04DB50282CD63200969009 /* App.swift */,
 				5E7DFA37282E15E300F5244E /* AskNotificationView.swift */,
+				5EA77F692A9FBC59007BD76E /* HelpView.swift */,
+				5EA77F6B2AA09C0F007BD76E /* ErrorView.swift */,
+				5E0022CE2AA106FC00F2D96D /* HelpManual.md */,
 			);
 			path = "Main Window";
 			sourceTree = "<group>";
@@ -583,6 +594,7 @@
 			files = (
 				5E04DB58282CD63200969009 /* Preview Assets.xcassets in Resources */,
 				5E04DB55282CD63200969009 /* Assets.xcassets in Resources */,
+				5E0022CF2AA1091900F2D96D /* HelpManual.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -618,6 +630,7 @@
 				5E7DFA38282E15E300F5244E /* AskNotificationView.swift in Sources */,
 				5E7570FF282D213C0095F517 /* Battery.swift in Sources */,
 				5E7570FB282D213C0095F517 /* Presenter.swift in Sources */,
+				5EA77F6C2AA09C0F007BD76E /* ErrorView.swift in Sources */,
 				5E757103282D213C0095F517 /* Clipboard.swift in Sources */,
 				5E2569AD282D0C3400857925 /* BackgroundService.m in Sources */,
 				5E7DFA34282DF63800F5244E /* InternalBattery.swift in Sources */,
@@ -647,6 +660,7 @@
 				5E7DFA2E282DF29000F5244E /* TwoFingerTapView.swift in Sources */,
 				5E4C0BE9282EA12700F57927 /* AppDelegate.swift in Sources */,
 				5E6D57B6282CD9BB00292282 /* AppSettingsView.swift in Sources */,
+				5EA77F6A2A9FBC59007BD76E /* HelpView.swift in Sources */,
 				5E2569C1282D0C3400857925 /* AlertManager.swift in Sources */,
 				5E04DB84282CD6C600969009 /* SettingsView.swift in Sources */,
 				5E2569AB282D0C3400857925 /* KeychainItemWrapper.m in Sources */,
@@ -744,7 +758,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 12.3;
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -799,7 +813,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 12.3;
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
@@ -825,6 +839,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "KDE-Connect-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "KDE Connect";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
@@ -832,6 +847,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				MARKETING_VERSION = 0.0.3;
 				PRODUCT_BUNDLE_IDENTIFIER = org.kde.kdeconnect;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -859,6 +875,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "KDE-Connect-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "KDE Connect";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
@@ -866,6 +883,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				MARKETING_VERSION = 0.0.3;
 				PRODUCT_BUNDLE_IDENTIFIER = org.kde.kdeconnect;
 				PRODUCT_NAME = "$(TARGET_NAME)";

@@ -11,55 +11,98 @@ import AVFoundation
 
 struct MainView: View {
     static var mainViewSingleton: MainView?
-    var deviceView: DevicesView
+    var deviceView: DevicesView?
+    @Environment(\.openURL) var openURL
     @State static var findMyPhoneTimer = Empty<Date, Never>().eraseToAnyPublisher()
     @ObservedObject var selfData = selfDeviceData
+    @State var disabledSingletonConflict: Bool
+    @Binding var showingHelpWindow: Bool
     
-    init() {
+    init(showingHelpWindow: Binding<Bool>) {
         self.deviceView = DevicesView()
-        MainView.mainViewSingleton = self
+        self._disabledSingletonConflict = State(initialValue: false)
+        self._showingHelpWindow = showingHelpWindow
+    }
+    
+    func getHelpButton(_ action: @escaping () -> Void) -> some View {
+        // ref: https://blog.urtti.com/creating-a-macos-help-button-in-swiftui
+        Button(action: action, label: {
+            ZStack {
+                Circle()
+                    .strokeBorder(Color(NSColor.controlShadowColor), lineWidth: 0.5)
+                    .background(Circle().foregroundColor(Color(NSColor.controlColor)))
+                    .shadow(color: Color(NSColor.controlShadowColor).opacity(0.3), radius: 1)
+                    .frame(width: 20, height: 20)
+                Text("?").font(.system(size: 15, weight: .medium ))
+            }
+        })
+        .buttonStyle(PlainButtonStyle())
     }
     
     var body: some View {
-        VStack {
-            deviceView
-            Divider()
-            HStack {
-                Spacer()
-                DeviceItemView(deviceId: "0", parent: nil, deviceName: $selfData.deviceName, emoji: deviceView.getEmojiFromDeviceType(deviceType: DeviceType.current), connState: .local)
-                    .padding(.all)
-                Spacer()
+        if !self.disabledSingletonConflict {
+            VStack {
+                deviceView
+                Divider()
+                HStack {
+                    Spacer().frame(maxWidth: .infinity)
+                    HStack {
+                        DeviceItemView(deviceId: "0", parent: nil, deviceName: $selfData.deviceName, emoji: DevicesView.getEmojiFromDeviceType(DeviceType.current), connState: .local)
+                            .padding(.all)
+                    }.frame(maxWidth: .infinity)
+                    if !self.showingHelpWindow {
+                        getHelpButton {
+                            if let url = URL(string: "kdeconnect://help") {
+                                self.showingHelpWindow = true
+                                openURL(url)
+                            }
+                        }
+                        .padding(.all)
+                        .frame(maxWidth: .infinity, maxHeight: 128, alignment: .bottomTrailing)
+                    } else {
+                        Spacer().frame(maxWidth: .infinity)
+                    }
+                }
             }
-        }.refreshable {
-            refreshDiscoveryAndList()
-        }
-        .onReceive(NotificationCenter.default.publisher(for: .didReceivePairRequestNotification, object: nil)
-            .receive(on: RunLoop.main)) { notification in
-                onPairRequest(fromDeviceWithID: notification.userInfo?["deviceID"] as? String)
+            .refreshable {
+                refreshDiscoveryAndList()
             }
-        .onReceive(NotificationCenter.default.publisher(for: .pairRequestTimedOutNotification, object: nil)
-                    .receive(on: RunLoop.main)) { notification in
-            onPairTimeout(toDeviceWithID: notification.userInfo?["deviceID"] as? String)
-        }
-        .onReceive(NotificationCenter.default.publisher(for: .pairRequestSucceedNotification, object: nil)
-                    .receive(on: RunLoop.main)) { notification in
-            onPairSuccess(withDeviceWithID: notification.userInfo?["deviceID"] as? String)
-        }
-        .onReceive(NotificationCenter.default.publisher(for: .pairRequestRejectedNotification, object: nil)
-                    .receive(on: RunLoop.main)) { notification in
-            onPairRejected(byDeviceWithID: notification.userInfo?["deviceID"] as? String)
-        }
-        .onReceive(NotificationCenter.default.publisher(for: .didReceivePingNotification, object: nil)
-                    .receive(on: RunLoop.main)) { _ in
-            showPingAlert()
-        }
-        .onReceive(NotificationCenter.default.publisher(for: .didReceiveFindMyPhoneRequestNotification, object: nil)
-                    .receive(on: RunLoop.main)) { _ in
-            showFindMyPhoneAlert()
-            MainView.updateFindMyPhoneTimer(isRunning: true) // TODO: alert sound does not work
-        }
-        .onReceive(MainView.findMyPhoneTimer) { _ in
-            SystemSound.calendarAlert.play()
+            .onAppear {
+                self.disabledSingletonConflict = MainView.mainViewSingleton != nil
+                if !self.disabledSingletonConflict {
+                    MainView.mainViewSingleton = self
+                }
+            }
+            .onReceive(NotificationCenter.default.publisher(for: .didReceivePairRequestNotification, object: nil)
+                .receive(on: RunLoop.main)) { notification in
+                    onPairRequest(fromDeviceWithID: notification.userInfo?["deviceID"] as? String)
+                }
+            .onReceive(NotificationCenter.default.publisher(for: .pairRequestTimedOutNotification, object: nil)
+                        .receive(on: RunLoop.main)) { notification in
+                onPairTimeout(toDeviceWithID: notification.userInfo?["deviceID"] as? String)
+            }
+            .onReceive(NotificationCenter.default.publisher(for: .pairRequestSucceedNotification, object: nil)
+                        .receive(on: RunLoop.main)) { notification in
+                onPairSuccess(withDeviceWithID: notification.userInfo?["deviceID"] as? String)
+            }
+            .onReceive(NotificationCenter.default.publisher(for: .pairRequestRejectedNotification, object: nil)
+                        .receive(on: RunLoop.main)) { notification in
+                onPairRejected(byDeviceWithID: notification.userInfo?["deviceID"] as? String)
+            }
+            .onReceive(NotificationCenter.default.publisher(for: .didReceivePingNotification, object: nil)
+                        .receive(on: RunLoop.main)) { _ in
+                showPingAlert()
+            }
+            .onReceive(NotificationCenter.default.publisher(for: .didReceiveFindMyPhoneRequestNotification, object: nil)
+                        .receive(on: RunLoop.main)) { _ in
+                showFindMyPhoneAlert()
+                MainView.updateFindMyPhoneTimer(isRunning: true) // TODO: alert sound does not work
+            }
+            .onReceive(MainView.findMyPhoneTimer) { _ in
+                SystemSound.calendarAlert.play()
+            }
+        } else {
+            ErrorView("There cannot be multiple main windows. Please close this window to proceed.")
         }
     }
     
@@ -71,7 +114,7 @@ struct MainView: View {
 
     func deleteDevice(at offsets: IndexSet) {
         offsets
-            .map { (offset: $0, id: deviceView.savedDevicesIds[$0]) }
+            .map { (offset: $0, id: deviceView!.savedDevicesIds[$0]) }
             .forEach { device in
                 // TODO: Update Device.m to indicate nullability
                 let name = backgroundService._devices[device.id]!._name!
@@ -130,6 +173,6 @@ struct MainView: View {
 
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
-        MainView()
+        MainView(showingHelpWindow: .constant(false))
     }
 }

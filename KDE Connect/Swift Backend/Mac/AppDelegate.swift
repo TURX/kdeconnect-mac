@@ -12,12 +12,15 @@ import UserNotifications
 class AppDelegate: NSObject, NSApplicationDelegate {
     private var menu: NSMenu? = nil
     private var safe: Bool = true
+    
+    private var whitelist: Array<String> = ["KDE Connect", "Devices"]
+    
     private var needMenuUpdate: Bool = false {
         didSet {
             if self.needMenuUpdate == true {
                 if safe {
                     safe = false
-                    self.menu?.items.removeAll(where: { $0.title != "KDE Connect" && $0.title != "Devices" })
+                    self.menu?.items.removeAll(where: { !self.whitelist.contains($0.title) })
                     safe = true
                 }
                 self.needMenuUpdate = false
@@ -26,7 +29,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     func requestMenuUpdate() {
-        if menu?.items.count != 2 {
+        if menu?.items.count != self.whitelist.count {
             self.needMenuUpdate = true
         }
     }
@@ -44,6 +47,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func applicationDidFinishLaunching(_ notification: Notification) {
         UNUserNotificationCenter.current().delegate = self
+    }
+    
+    func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {
+        return true
     }
 }
 

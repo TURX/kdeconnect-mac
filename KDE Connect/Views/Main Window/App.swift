@@ -14,11 +14,7 @@ struct KDE_Connect_App: App {
     @StateObject var notificationManager: NotificationManager = NotificationManager()
     @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     @State var disabledByNotGrantedNotificationPermission: Bool = false
-    let mainView: MainView
-    
-    init() {
-        self.mainView = MainView()
-    }
+    @State var showingHelpWindow: Bool = false
     
     func requestNotification() {
         let center = UNUserNotificationCenter.current()
@@ -32,9 +28,9 @@ struct KDE_Connect_App: App {
     }
     
     var body: some Scene {
-        WindowGroup {
+        WindowGroup("main") {
             if !self.disabledByNotGrantedNotificationPermission {
-                mainView
+                MainView(showingHelpWindow: self.$showingHelpWindow)
                     .preferredColorScheme((selfDeviceDataForTopLevel.chosenTheme == "System Default") ? nil : appThemes[selfDeviceDataForTopLevel.chosenTheme])
                     .onAppear {
                         NSApplication.shared.applicationIconImage = NSImage(named: (selfDeviceDataForTopLevel.appIcon.rawValue ?? "AppIcon"))
@@ -48,6 +44,7 @@ struct KDE_Connect_App: App {
                     }
             } else {
                 AskNotificationView()
+                    .preferredColorScheme((selfDeviceDataForTopLevel.chosenTheme == "System Default") ? nil : appThemes[selfDeviceDataForTopLevel.chosenTheme])
                     .onReceive(NotificationCenter.default.publisher(for: NSApplication.willUpdateNotification)) { _ in
                         requestNotification()
                     }
@@ -57,7 +54,7 @@ struct KDE_Connect_App: App {
             CommandMenu("Devices") {
                 if !self.disabledByNotGrantedNotificationPermission {
                     Button("Refresh Discovery") {
-                        mainView.refreshDiscoveryAndList()
+                        MainView.mainViewSingleton?.refreshDiscoveryAndList()
                     }
                 } else {
                     Label("Refresh Discovery", systemImage: "")
@@ -74,7 +71,14 @@ struct KDE_Connect_App: App {
                 }
             }
         }
-        .windowStyle(HiddenTitleBarWindowStyle())
+        .windowStyle(.hiddenTitleBar)
+    
+        WindowGroup("help") {
+            HelpView(showingHelpWindow: self.$showingHelpWindow)
+                .preferredColorScheme((selfDeviceDataForTopLevel.chosenTheme == "System Default") ? nil : appThemes[selfDeviceDataForTopLevel.chosenTheme])
+        }
+        .windowStyle(.hiddenTitleBar)
+        .handlesExternalEvents(matching: Set(arrayLiteral: "*"))
         
         Settings {
             if !self.disabledByNotGrantedNotificationPermission {
@@ -83,6 +87,7 @@ struct KDE_Connect_App: App {
                     .environmentObject(selfDeviceDataForTopLevel)
             } else {
                 AskNotificationView()
+                    .preferredColorScheme((selfDeviceDataForTopLevel.chosenTheme == "System Default") ? nil : appThemes[selfDeviceDataForTopLevel.chosenTheme])
                     .frame(width: 450, height: 250)
             }
         }

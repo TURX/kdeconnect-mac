@@ -14,25 +14,40 @@ struct DeviceItemView: View {
     @Binding var deviceName: String
     let emoji: String
     let connState: DevicesView.ConnectionState
-    let backgroundColor: Color
+    let mockBatteryLevel: Int?
+    @State var backgroundColor: Color
     @Environment(\.colorScheme) var colorScheme
     
-    init(deviceId: String, parent: DevicesView? = nil, deviceName: Binding<String>, emoji: String, connState: DevicesView.ConnectionState) {
+    init(deviceId: String, parent: DevicesView? = nil, deviceName: Binding<String>, emoji: String, connState: DevicesView.ConnectionState, mockBatteryLevel: Int? = nil) {
         self.deviceId = deviceId
         self.parent = parent
         self._deviceName = deviceName
         self.emoji = emoji
+        self.connState = connState
+        self.mockBatteryLevel = mockBatteryLevel
         switch (connState) {
         case .connected:
-            self.backgroundColor = .green
+            self._backgroundColor = State(initialValue: .green)
         case .saved:
-            self.backgroundColor = .gray
+            self._backgroundColor = State(initialValue: .gray)
         case .visible:
-            self.backgroundColor = .cyan
+            self._backgroundColor = State(initialValue: .cyan)
         case .local:
-            self.backgroundColor = .cyan
+            self._backgroundColor = State(initialValue: .cyan)
         }
-        self.connState = connState
+    }
+    
+    func getBackgroundColor(_ connState: DevicesView.ConnectionState) -> Color {
+        switch (connState) {
+        case .connected:
+            return .green
+        case .saved:
+            return .gray
+        case .visible:
+            return .cyan
+        case .local:
+            return .cyan
+        }
     }
 
     func isPluginAvailable(_ plugin: NetworkPackage.`Type`) -> Bool {
@@ -43,6 +58,14 @@ struct DeviceItemView: View {
             return false
         }
         return false
+    }
+    
+    func isPaired() -> Bool {
+        backgroundService.devices[self.deviceId]?.isPaired() ?? false
+    }
+    
+    func isReachable() -> Bool {
+        backgroundService.devices[self.deviceId]?.isReachable() ?? false
     }
     
     @State private var showingPhotosPicker: Bool = false
@@ -70,6 +93,17 @@ struct DeviceItemView: View {
                         (backgroundService._devices[self.deviceId]!._plugins[.batteryRequest] as! Battery)
                             .sendBatteryStatusOut()
                     }
+                } else if self.mockBatteryLevel != nil {
+                    Circle()
+                        .trim(from: 0, to: CGFloat(self.mockBatteryLevel!) / 100)
+                        .rotation(.degrees(-90))
+                        .stroke(.blue, style: StrokeStyle(lineWidth: 3, lineCap: .round))
+                        .brightness(colorScheme == .light ? -0.1 : 0.1)
+                    Text(String(self.mockBatteryLevel!) + "%")
+                        .frame(maxWidth: 64, maxHeight: 64, alignment: .top)
+                        .padding(.top, 2)
+                        .font(.system(.footnote, design: .rounded).weight(.light))
+                        .foregroundColor(.black)
                 }
                 Text(emoji)
                     .font(.system(size: 32))
@@ -83,6 +117,10 @@ struct DeviceItemView: View {
                     .padding(.horizontal, 8)
             }.background(RoundedRectangle(cornerRadius: 8)
                 .fill(parent?.clickedDeviceId == self.deviceId ? .accentColor : Color.blue.opacity(0)))
+        }.onChange(of: self.connState) { newValue in
+            withAnimation {
+                self.backgroundColor = getBackgroundColor(newValue)
+            }
         }.onTapGesture {
             parent?.clickedDeviceId = self.deviceId
         }.onDrop(of: [.fileURL], isTargeted: nil) { providers in
@@ -103,36 +141,47 @@ struct DeviceItemView: View {
                 (backgroundService._devices[self.deviceId]!._plugins[.share] as! Share).prepAndInitFileSend(fileURLs: droppedFileURLs)
                 return true
             } else {
+                self.backgroundColor = .red
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    withAnimation {
+                        self.backgroundColor = getBackgroundColor(self.connState)
+                    }
+                }
                 return false
             }
         }.contextMenu {
             if parent?.clickedDeviceId == self.deviceId {
-                if backgroundService.devices[self.deviceId]?.isPaired() ?? false {
+                if self.connState == .connected || self.connState == .saved {
                     Button("Unpair") {
-                        backgroundService.unpairDevice(self.deviceId)
+                        if self.isPaired() {
+                            backgroundService.unpairDevice(self.deviceId)
+                        }
                     }
-                    if backgroundService.devices[self.deviceId]?.isReachable() ?? false {
-                            if let pluginsEnableStatus = backgroundService.devices[self.deviceId]?.pluginsEnableStatus, let pluginsList = backgroundService.devices[self.deviceId]?.plugins {
-                            if (pluginsEnableStatus[.ping] != nil) {
-                                Button("Ping") {
-                                    (pluginsList[.ping] as! Ping).sendPing()
-                                }
+                    
+                    if self.isReachable() {
+                        if self.isPluginAvailable(.ping) {
+                            Button("Ping") {
+                                (backgroundService.devices[self.deviceId]!.plugins[.ping] as! Ping).sendPing()
                             }
-                            if (pluginsEnableStatus[.clipboard] != nil) {
-                                Button("Push Local Clipboard") {
-                                    (pluginsList[.clipboard] as! Clipboard).sendClipboardContentOut()
-                                }
+                        }
+                        
+                        if self.isPluginAvailable(.clipboard) {
+                            Button("Push Local Clipboard") {
+                                (backgroundService.devices[self.deviceId]!.plugins[.clipboard] as! Clipboard).sendClipboardContentOut()
                             }
-                            if (pluginsEnableStatus[.share] != nil) {
-                                // TODO: fix media sharing
+                        }
+                        
+                        if self.isPluginAvailable(.share) {
+                            // TODO: fix media sharing
 //                                Button("Send Photos and Videos") {
 //                                    showingPhotosPicker = true
 //                                }
-                                Button("Send Files") {
-                                    showingFilePicker = true
-                                }
+                            Button("Send Files") {
+                                showingFilePicker = true
                             }
                         }
+                    } else if self.connState == .connected {
+                        Button("Plugins if reachable") {}.disabled(true)
                     }
                 } else {
                     Button("Pair") {
