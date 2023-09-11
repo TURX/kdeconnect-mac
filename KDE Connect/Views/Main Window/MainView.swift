@@ -12,7 +12,7 @@ import AVFoundation
 struct MainView: View {
     static var mainViewSingleton: MainView?
     var deviceView: DevicesView?
-    @Environment(\.openURL) var openURL
+    @Environment(\.openWindow) private var openWindow
     @State static var findMyPhoneTimer = Empty<Date, Never>().eraseToAnyPublisher()
     @ObservedObject var selfData = selfDeviceData
     @State var disabledSingletonConflict: Bool
@@ -24,7 +24,7 @@ struct MainView: View {
         self._showingHelpWindow = showingHelpWindow
     }
     
-    func getHelpButton(_ action: @escaping () -> Void) -> some View {
+    func HelpButton(_ action: @escaping () -> Void) -> some View {
         // ref: https://blog.urtti.com/creating-a-macos-help-button-in-swiftui
         Button(action: action, label: {
             ZStack {
@@ -51,16 +51,14 @@ struct MainView: View {
                             .padding(.all)
                     }.frame(maxWidth: .infinity)
                     if !self.showingHelpWindow {
-                        getHelpButton {
-                            if let url = URL(string: "kdeconnect://help") {
-                                self.showingHelpWindow = true
-                                openURL(url)
-                            }
+                        HelpButton {
+                            self.showingHelpWindow = true
+                            openWindow(id: "help")
                         }
                         .padding(.all)
                         .frame(maxWidth: .infinity, maxHeight: 128, alignment: .bottomTrailing)
                     } else {
-                        Spacer().frame(maxWidth: .infinity)
+                        Spacer().frame(maxWidth: .infinity, maxHeight: 128, alignment: .bottomTrailing)
                     }
                 }
             }

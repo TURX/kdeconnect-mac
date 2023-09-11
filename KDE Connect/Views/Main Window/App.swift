@@ -28,7 +28,7 @@ struct KDE_Connect_App: App {
     }
     
     var body: some Scene {
-        WindowGroup("main") {
+        WindowGroup("Connect", id: "connect") {
             if !self.disabledByNotGrantedNotificationPermission {
                 MainView(showingHelpWindow: self.$showingHelpWindow)
                     .preferredColorScheme((selfDeviceDataForTopLevel.chosenTheme == "System Default") ? nil : appThemes[selfDeviceDataForTopLevel.chosenTheme])
@@ -73,12 +73,11 @@ struct KDE_Connect_App: App {
         }
         .windowStyle(.hiddenTitleBar)
     
-        WindowGroup("help") {
+        WindowGroup("Help", id: "help") {
             HelpView(showingHelpWindow: self.$showingHelpWindow)
                 .preferredColorScheme((selfDeviceDataForTopLevel.chosenTheme == "System Default") ? nil : appThemes[selfDeviceDataForTopLevel.chosenTheme])
         }
         .windowStyle(.hiddenTitleBar)
-        .handlesExternalEvents(matching: Set(arrayLiteral: "*"))
         
         Settings {
             if !self.disabledByNotGrantedNotificationPermission {

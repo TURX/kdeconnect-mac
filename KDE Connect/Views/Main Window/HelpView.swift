@@ -51,8 +51,6 @@ struct HelpView: View {
             }
             .frame(maxWidth: .infinity)
             .padding(.all)
-        }.onAppear {
-            self.showingHelpWindow = true
         }.onDisappear {
             self.showingHelpWindow = false
         }

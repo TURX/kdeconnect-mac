@@ -161,7 +161,6 @@
 		5E7DFA37282E15E300F5244E /* AskNotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AskNotificationView.swift; sourceTree = "<group>"; };
 		5EA77F692A9FBC59007BD76E /* HelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpView.swift; sourceTree = "<group>"; };
 		5EA77F6B2AA09C0F007BD76E /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
-		5ED731632AA0E1E500390F11 /* KDE-Connect-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "KDE-Connect-Info.plist"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -216,7 +215,6 @@
 		5E04DB4F282CD63200969009 /* KDE Connect */ = {
 			isa = PBXGroup;
 			children = (
-				5ED731632AA0E1E500390F11 /* KDE-Connect-Info.plist */,
 				5E7DFA23282DF24800F5244E /* Views */,
 				5E7570E1282D213C0095F517 /* Plugins and Plugin Views */,
 				5E256975282D0C3300857925 /* ObjC Backend */,
@@ -839,7 +837,6 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "KDE-Connect-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "KDE Connect";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
@@ -847,7 +844,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 0.0.3;
 				PRODUCT_BUNDLE_IDENTIFIER = org.kde.kdeconnect;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -875,7 +872,6 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "KDE-Connect-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "KDE Connect";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
@@ -883,7 +879,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 0.0.3;
 				PRODUCT_BUNDLE_IDENTIFIER = org.kde.kdeconnect;
 				PRODUCT_NAME = "$(TARGET_NAME)";
